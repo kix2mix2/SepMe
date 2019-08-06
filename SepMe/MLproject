@@ -1,0 +1,25 @@
+name: multistep_example
+
+#conda_env: conda.yaml
+
+entry_points:
+  load_raw_data:
+    command: "python -m SepMe.tasks.load_raw_data"
+
+  als:
+    parameters:
+      ratings_data: path
+      max_iter: {type: int, default: 10}
+      reg_param: {type: float, default: 0.1}
+      rank: {type: int, default: 12}
+    command: "python tasks.als.py --ratings-data {ratings_data} --max-iter {max_iter} --reg-param {reg_param} --rank {rank}"
+
+
+
+  main:
+    parameters:
+      als_max_iter: {type: int, default: 10}
+      keras_hidden_units: {type: int, default: 20}
+      max_row_limit: {type: int, default: 100000}
+    command: "python -m SepMe.main"
+
