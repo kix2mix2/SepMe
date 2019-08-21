@@ -25,3 +25,5 @@ keys
 *.csv
 /data
 /SepMe/SepMe_ml.log
+/SepMe.egg-info/
+/SepMe_ml.log

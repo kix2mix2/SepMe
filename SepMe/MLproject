@@ -6,6 +6,12 @@ entry_points:
   load_raw_data:
     command: "python -m SepMe.tasks.load_raw_data"
 
+  filter_study_data:
+    command: "python -m SepMe.tasks.filter_study_data"
+
+  dsc:
+    command: "python -m SepMe.tasks.dsc"
+
   als:
     parameters:
       ratings_data: path

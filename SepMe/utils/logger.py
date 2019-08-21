@@ -26,6 +26,8 @@ class MLFlowLogger(logging.getLoggerClass()):
         mlflow.set_tag(key, value)
         self.log(level, f"Tag set: {key}: {value}")
 
+    # TODO(cristina): Add log_metrics & log_artifacts once you figure out if you need them
+
 
 def get_logger(name, log_file):
     """Create a custom logger that sends all messages (inc. debug) to `log_file` and

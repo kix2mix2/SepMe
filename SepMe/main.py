@@ -1,12 +1,6 @@
-"""
-Downloads the MovieLens dataset, ETLs it into Parquet, trains an
-ALS model, and uses the ALS model to train a Keras neural network.
-
-See README.rst for more details.
-"""
-
 import click
 import os
+import random
 
 
 import mlflow
@@ -20,28 +14,28 @@ from SepMe.utils.workflow_utils import _get_or_run
 from SepMe import logger
 
 @click.command()
-@click.option("--als-max-iter", default=10, type=int)
-@click.option("--keras-hidden-units", default=20, type=int)
-@click.option("--max-row-limit", default=100000, type=int)
-def workflow(als_max_iter, keras_hidden_units, max_row_limit):
+@click.option("--exp_name", default='SepMe', type=str)
+def workflow(exp_name):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
 
     #dir = os.path.dirname(os.path.abspath(__file__)).split('/SepMe')[0]
-    dir = os.path.dirname(os.path.abspath(__file__))
-    print(dir)
-    print('------------------\n')
+    ddir = os.path.dirname(os.path.abspath(__file__))
+    logger.info(ddir)
+    logger.info('------------------\n')
 
-
-    with mlflow.start_run() as active_run:
+    mlflow.set_experiment(exp_name)
+    with mlflow.start_run(run_name="DSC_wf") as active_run:
 
         logger.log_metric('kii', 1)
-
         os.environ['SPARK_CONF_DIR'] = os.path.abspath('.')
         git_commit = active_run.data.tags.get(mlflow_tags.MLFLOW_GIT_COMMIT)
-        load_raw_data_run = _get_or_run(dir, "load_raw_data", {}, git_commit)
+        filter_study_data = _get_or_run(ddir, "filter_study_data", {'path': '/Users/morarica/Developer/SepMe/data/RESULTS_EUROVIS2015.csv'}, git_commit)
 
+        print(filter_study_data)
+        dsc = _get_or_run(ddir, "dsc", {}, git_commit)
 
+        print('hello')
 
 
 if __name__ == '__main__':
