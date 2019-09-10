@@ -3,19 +3,15 @@ Downloads the MovieLens dataset and saves it as an artifact
 """
 
 from __future__ import print_function
-from SepMe import logger
 
-import requests
-import tempfile
-import os
-import zipfile
-import mlflow
 import click
-
-import pandas as pd
+import mlflow
 import numpy as np
+import pandas as pd
 from scipy.spatial.distance import cdist
 from sklearn.metrics import accuracy_score
+
+from SepMe import logger
 
 
 def calculate_dsc(sample_df, class_names):
