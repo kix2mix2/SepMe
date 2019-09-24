@@ -1,0 +1,19 @@
+experiment_name: 'graph_neighbourhoods'
+data_path: 'data/RESULTS_EUROVIS2015.csv'
+folder_path: "data/EUROVIS_new/"
+graph_types:
+  del:
+  mst:
+  knn: [1,2,3]
+#  kncg: [2]
+#  gong: [0.35]
+#  rng:
+#  bt: [0.005, 0.02, 0.05]
+#  as: [0.01]
+#  cbsg: [0.2]
+purities:
+  type: ['mcec', 'ltcc', 'cp', 'ce', 'mv']
+  pessimism: True
+  class: 1
+
+

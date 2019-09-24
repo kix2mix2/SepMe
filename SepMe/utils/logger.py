@@ -1,23 +1,5 @@
 import logging
 import mlflow
-import time
-import networkx as nx
-
-g = nx.Graph()
-nx.neighbors(g, 1)
-
-
-def timeit(method):
-    def timed(*args, **kw):
-        ts = time.time()
-        result = method(*args, **kw)
-        te = time.time()
-
-        print '%r (%r, %r) %2.2f sec' % \
-              (method.__name__, args, kw, te-ts)
-        return result
-
-    return timed
 
 class MLFlowLogger(logging.getLoggerClass()):
     """Logger class that provides simple wrapper functions to simultaneously log things

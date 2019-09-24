@@ -1,42 +1,85 @@
 import click
-import os
-import random
-
-
 import mlflow
+import pandas as pd
+import yaml
 from mlflow.utils import mlflow_tags
-from mlflow.entities import RunStatus
-from mlflow.utils.logging_utils import eprint
-import six
 
-from mlflow.tracking.fluent import _get_experiment_id
-from SepMe.utils.workflow_utils import _get_or_run
 from SepMe import logger
+from SepMe.utils.graph_utils import calculate_graphs, calculate_purities
+from SepMe.utils.workflow_utils import load_yaml
+import pickle
+
 
 @click.command()
-@click.option("--exp_name", default='SepMe', type=str)
-def workflow(exp_name):
+@click.option("--config-path", default="SepMe/configs/baby_config.yaml")
+def workflow(config_path):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
-
-    #dir = os.path.dirname(os.path.abspath(__file__)).split('/SepMe')[0]
-    ddir = os.path.dirname(os.path.abspath(__file__))
-    logger.info(ddir)
-    logger.info('------------------\n')
-
-    mlflow.set_experiment(exp_name)
-    with mlflow.start_run(run_name="DSC_wf") as active_run:
-
-        logger.log_metric('kii', 1)
-        os.environ['SPARK_CONF_DIR'] = os.path.abspath('.')
-        git_commit = active_run.data.tags.get(mlflow_tags.MLFLOW_GIT_COMMIT)
-        filter_study_data = _get_or_run(ddir, "filter_study_data", {'path': '/Users/morarica/Developer/SepMe/data/RESULTS_EUROVIS2015.csv'}, git_commit)
-
-        print(filter_study_data)
-        dsc = _get_or_run(ddir, "dsc", {}, git_commit)
-
-        print('hello')
+    with open(config_path, 'r') as stream:
+        try:
+            config = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
 
 
-if __name__ == '__main__':
+    logger.info(config)
+    mlflow.set_experiment(config['experiment_name'])
+    data_dict = {}
+
+    # read in list of datasets
+    data_df = pd.read_csv(config['data_path'])
+
+    # for each dataset
+    for i, file in enumerate(data_df.fileName):
+        file_name = (
+            config['folder_path']
+            + file.split(".csv")[0]
+            + "_cls"
+            + str(data_df.classNum[i])
+            + ".csv"
+        )
+        code_name = (file.split(".csv")[0]
+            + "_cls"
+            + str(data_df.classNum[i]))
+        try:
+            df = pd.read_csv(file_name, names=["x", "y", "class"])
+        except FileNotFoundError:
+            df = None
+            logger.info("File '" + file + "' does not exist.")
+            # data_dict[file_name] = 'n/a'
+            continue
+
+        if df is not None:
+            with mlflow.start_run(run_name=code_name) as active_run:
+                data_dict[file] = {}
+                logger.info("Runtime: " + code_name)
+                logger.log_param('df_size', len(df))
+
+                nx_dict = calculate_graphs(df, config['graph_types']) # calculate all graphs
+
+                with open(code_name + '_graphs.pickle', 'wb') as handle:
+                    pickle.dump(nx_dict, handle, protocol = pickle.HIGHEST_PROTOCOL)
+
+                #logger.log_artifact(file + '_graphs.pickle')
+
+                for graph in nx_dict.keys():
+                    logger.info('Calculating purity for ' + graph)
+                    data_dict[file][graph] = {}
+                    if type(nx_dict[graph]) is dict:
+                        for subgraph in nx_dict[graph].keys():
+                            data_dict[file][graph][subgraph] = calculate_purities(df, nx_dict[graph][subgraph], config['purities'])
+                    else:
+                        data_dict[file][graph] = calculate_purities(df, nx_dict[graph], config['purities'])
+
+                logger.info('This is the collected data: ')
+                logger.info(data_dict)
+
+        #logger.info(data_dict)
+
+
+        # for each graph calculate all purities
+        # save each result in a per dataset dict
+
+
+if __name__ == "__main__":
     workflow()

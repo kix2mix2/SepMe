@@ -5,7 +5,32 @@ from mlflow.utils import mlflow_tags
 from mlflow.tracking.fluent import _get_experiment_id
 import six
 
+from functools import wraps
+from time import time
+import yaml
+from SepMe import logger
 
+def load_yaml(path):
+    with open(path, 'r') as stream:
+        try:
+            config = yaml.safe_load(stream)
+            return config
+        except yaml.YAMLError as exc:
+            print(exc)
+            return None
+
+
+def timeit(f):
+    @wraps(f)
+    def wrap(*args, **kw):
+        ts = time()
+        result = f(*args, **kw)
+        te = time()
+
+
+        logger.log_param(f.__name__ + '_time', round(te-ts,5))
+        return result
+    return wrap
 
 def _already_ran(entry_point_name, parameters, git_commit, experiment_id=None):
     """Best-effort detection of if a run with the given entrypoint name,
