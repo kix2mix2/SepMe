@@ -1,4 +1,4 @@
-experiment_name: 'graph_neighbourhoods'
+experiment_name: 'big_exp'
 data_path: 'data/RESULTS_EUROVIS2015.csv'
 results_path: 'data/results/res_'
 folder_path: "data/EUROVIS_new/"

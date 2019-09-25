@@ -6,7 +6,7 @@ load_dotenv(
 )  # won't override env vars already set
 
 config = {
-    "LOG_FILE": os.getenv("LOG_FILE", "../midas_ml.log"),
+    "LOG_FILE": os.getenv("LOG_FILE", "../sepme.log"),
     "MLFLOW_TRACKING_URI": os.getenv(
         "MLFLOW_TRACKING_URI", "http://localhost:5000"
     ),

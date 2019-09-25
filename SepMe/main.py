@@ -40,7 +40,7 @@ def save_progress(data_dict, results_path, config, i):
 
 @timeit_print
 @click.command()
-@click.option("--config-path", default = "SepMe/configs/baby_config.yaml")
+@click.option("--config-path", default = "SepMe/configs/config.yaml")
 @click.option("--save", default = 10)
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
