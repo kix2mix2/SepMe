@@ -12,10 +12,6 @@ from SepMe.utils.workflow_utils import underscore_reducer, timeit, timeit_print
 
 @timeit
 def save_progress(data_dict, results_path, config, i):
-    logger.info("This is the collected data: ")
-    logger.info(data_dict)
-
-
     # resave results
     # with open(results_path + config["experiment_name"] + '_' + str(i) + "_data.json", "w") as fp:
     #     json.dump(data_dict, fp)
@@ -41,7 +37,7 @@ def save_progress(data_dict, results_path, config, i):
 @timeit_print
 @click.command()
 @click.option("--config-path", default = "SepMe/configs/config.yaml")
-@click.option("--save", default = 10)
+@click.option("--save", default = 5)
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
