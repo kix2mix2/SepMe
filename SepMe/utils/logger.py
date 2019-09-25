@@ -1,6 +1,7 @@
 import logging
 import mlflow
 
+
 class MLFlowLogger(logging.getLoggerClass()):
     """Logger class that provides simple wrapper functions to simultaneously log things
     using mlflow as well as normal logging handlers.
@@ -16,11 +17,17 @@ class MLFlowLogger(logging.getLoggerClass()):
 
     def log_artifact(self, local_path, artifact_path=None, level=logging.INFO):
         mlflow.log_artifact(local_path, artifact_path)
-        self.log(level, f"Artifact logged: {local_path} to {artifact_path or 'default location'}")
+        self.log(
+            level,
+            f"Artifact logged: {local_path} to {artifact_path or 'default location'}",
+        )
 
     def log_artifacts(self, local_dir, artifact_path=None, level=logging.INFO):
         mlflow.log_artifacts(local_dir, artifact_path)
-        self.log(level, f"Artifacts logged: {local_dir} to {artifact_path or 'default location'}")
+        self.log(
+            level,
+            f"Artifacts logged: {local_dir} to {artifact_path or 'default location'}",
+        )
 
     def set_tag(self, key, value, level=logging.INFO):
         mlflow.set_tag(key, value)
@@ -45,7 +52,9 @@ def get_logger(name, log_file):
 
     debug_handler = logging.FileHandler(log_file)
     debug_handler.setLevel(logging.INFO)
-    debug_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    debug_format = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
     debug_handler.setFormatter(debug_format)
 
     info_handler = logging.StreamHandler()

@@ -1,6 +1,8 @@
 experiment_name: 'graph_neighbourhoods'
 data_path: 'data/RESULTS_EUROVIS2015.csv'
+results_path: 'data/results/res_'
 folder_path: "data/EUROVIS_new/"
+graph_path: 'data/graphs/'
 graph_types:
   del:
   mst:
@@ -13,5 +15,5 @@ graph_types:
   cbsg: [0.2]
 purities:
   type: ['mcec', 'ltcc', 'cp', 'ce', 'mv']
-  pessimism: True
+  pessimism: [True, False]
   class: 1

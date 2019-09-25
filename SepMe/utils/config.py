@@ -1,11 +1,15 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv(verbose=True, override=False)  # won't override env vars already set
+load_dotenv(
+    verbose=True, override=False
+)  # won't override env vars already set
 
 config = {
     "LOG_FILE": os.getenv("LOG_FILE", "../midas_ml.log"),
-    "MLFLOW_TRACKING_URI": os.getenv("MLFLOW_TRACKING_URI", 'http://localhost:5000'),
+    "MLFLOW_TRACKING_URI": os.getenv(
+        "MLFLOW_TRACKING_URI", "http://localhost:5000"
+    ),
 }
 
 # TODO: env variable validation
