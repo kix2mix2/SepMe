@@ -53,8 +53,8 @@ def process_dataset(i, file, config, class_num):
     # process file
     if df is not None:
         with mlflow.start_run(run_name = code_name) as active_run:
-            #logger.info("Runtime: " + code_name)
-            #logger.log_param("df_size", len(df))
+            print("Runtime: " + code_name)
+            print("df_size", len(df))
 
             data_dict[code_name] = {}
 
