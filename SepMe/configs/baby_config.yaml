@@ -1,4 +1,4 @@
-experiment_name: 'graph_neighbourhoods'
+experiment_name: 'graph_neighbourhoods_1'
 data_path: 'data/RESULTS_EUROVIS2015.csv'
 results_path: 'data/results/res_'
 folder_path: "data/EUROVIS_new/"
@@ -6,7 +6,7 @@ graph_path: 'data/graphs/'
 graph_types:
   del:
   mst:
-  knn: [1,2,3]
+  knn: [1]
 #  kncg: [2]
 #  gong: [0.35]
 #  rng:
