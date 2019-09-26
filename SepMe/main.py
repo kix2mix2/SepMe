@@ -82,7 +82,7 @@ def process_dataset(i, file, config, class_num):
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
-    ray.init(num_cpus=psutil.cpu_count())
+    ray.init(num_cpus=psutil.cpu_count()-2)
     time.sleep(2.0)
     start_time = time.time()
 
@@ -94,7 +94,7 @@ def workflow(config_path, save):
             return
 
     logger.info(config)
-    logger.info('Number of processors: '+ str(psutil.cpu_count()))
+    logger.info('Number of processors: '+ str(psutil.cpu_count()-2))
     mlflow.set_experiment(config["experiment_name"])
 
     # read in list of input datasets

@@ -184,7 +184,8 @@ def get_rng(df, graph_del, graph_mst):
 def get_kncg(df, K=4):
     graph = get_knntree(df, 1)
     for node_a, row in df.iterrows():
-        #print(K)
+        if node_a % 50:
+            print(K)
         node_a_coord = list(row[:2])
         ncns = []
         ncn_coords = []
@@ -229,6 +230,8 @@ def get_gong(df, y=0):
     y_dists = (1 - y) * dists
 
     for node_a, row_a in df.iterrows():
+        if node_a % 50:
+            print(y)
         node_a_coord = list(row_a[:2])  # O(dn)
         dist_idx = np.argsort(dists[node_a])  # O(nlog n)
         for node_b in dist_idx:
