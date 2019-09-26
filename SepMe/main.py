@@ -21,14 +21,14 @@ def save_progress(data_dict, results_path):
     for file in data_dict.keys():
         data_new[file] = flatten(data_dict[file], reducer = underscore_reducer)
     results_df = pd.DataFrame.from_dict(data_new, orient = "index")
-
-    if False:
-        results_all = pd.read_csv(results_path, index_col = 0)
-        results_all = results_all.append(results_df, sort = False)
-        results_all.to_csv(results_path)
-
-    else:
-        results_df.to_csv(results_path)
+    results_df.to_csv(results_path)
+    # if False:
+    #     results_all = pd.read_csv(results_path, index_col = 0)
+    #     results_all = results_all.append(results_df, sort = False)
+    #     results_all.to_csv(results_path)
+    #
+    # else:
+    #     results_df.to_csv(results_path)
 
     # return empty dict to free memory.
     return {}
@@ -36,7 +36,7 @@ def save_progress(data_dict, results_path):
 @ray.remote
 def process_dataset(i, file, config, class_num):
     #logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
-
+    print('----------------- ' + str(i) + ' -------------------')
     data_dict = {}
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"
     code_name = file.split(".csv")[0] + "_cls" + str(class_num[i])
@@ -72,7 +72,7 @@ def process_dataset(i, file, config, class_num):
                 else:
                     data_dict[code_name][graph] = calculate_purities(df, nx_dict[graph], config["purities"])
 
-    print('----------------- '+str(i)+' -------------------')
+
     return data_dict
 
 
@@ -99,7 +99,7 @@ def workflow(config_path, save):
 
     # read in list of input datasets
     data_df = pd.read_csv(config["data_path"])
-    data_df = data_df[:20]
+    #data_df = data_df[:20]
 
     # make a directory to save graphs
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"

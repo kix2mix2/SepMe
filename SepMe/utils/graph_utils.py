@@ -35,16 +35,19 @@ def calculate_graphs(graph_path, df, config):
         if 'knn' in config:
             graph_types['knn'] = {}
             for param in config['knn']:
+
                 graph_types['knn'][param] = add_node_attr(get_knntree(df, param),df)
 
         if 'kncg' in config:
             graph_types['kncg'] = {}
             for param in config['kncg']:
+                logger.info('kncg-param:' + str(param))
                 graph_types['kncg'][param] = add_node_attr(get_kncg(df, param),df)
 
         if 'gong' in config:
             graph_types['gong'] = {}
             for param in config['gong']:
+                logger.info('gong-param:' + str(param))
                 graph_types['gong'][param] = add_node_attr(get_gong(df, param),df)
 
         if 'rng' in config:
