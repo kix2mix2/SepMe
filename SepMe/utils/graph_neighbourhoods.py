@@ -184,7 +184,7 @@ def get_rng(df, graph_del, graph_mst):
 def get_kncg(df, K=4):
     graph = get_knntree(df, 1)
     for node_a, row in df.iterrows():
-        print(K)
+        #print(K)
         node_a_coord = list(row[:2])
         ncns = []
         ncn_coords = []
