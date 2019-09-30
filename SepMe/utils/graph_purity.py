@@ -174,7 +174,7 @@ def mcec(graph, df, m):
         if node_a != node_b:
             rem_edges += 1
 
-    # mixed.append(rem_edges)
+    mixed.append(rem_edges)
 
     # print('Mixed Edges: ' + str(rem_edges))
     classes = list(set(df["class"]))
