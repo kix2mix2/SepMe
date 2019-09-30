@@ -77,7 +77,7 @@ def process_dataset(i, file, config, class_num):
 
 
 @click.command()
-@click.option("--config-path", default = "SepMe/configs/config.yaml")
+@click.option("--config-path", default = "SepMe/configs/baby_config.yaml")
 @click.option("--save", default = 5)
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories

@@ -45,18 +45,19 @@ def attr_difference(G, H):
 
 def add_node_attr(graph, df, color=False):
     # add node position and class as attributes
+    nx.set_node_attributes(graph, df[['class']].to_dict('index'))
+    df['pos'] = list(zip(df.x, df.y))
+    nx.set_node_attributes(graph, df[['pos']].to_dict('index'))
     colors = []
-    for n in graph.nodes():
-        graph.node[n]["pos"] = list(df.loc[n, ["x", "y"]])
-        graph.node[n]["class"] = int(df.loc[n, ["class"]])
-        if color:
-            if int(df.loc[n, ["class"]]):
-                colors.append("blue")
-            else:
-                colors.append("red")
 
     if color:
-        return (graph, colors)
+        for n in graph.nodes():
+            if color:
+                if int(df.loc[n, ['class']]):
+                    colors.append('blue')
+                else:
+                    colors.append('red')
+            return (graph, colors)
     else:
         return graph
 

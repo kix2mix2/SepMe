@@ -161,34 +161,34 @@ def ltcc(graph, df):
 
     return stats
 
+def get_amount_mixed(graph):
+    rem_edges = 0
+    for edge in graph.edges():
+        # print(edge)
+        node_a = graph.nodes(data = True)[edge[0]]['class']
+        node_b = graph.nodes(data = True)[edge[1]]['class']
+
+        if node_a != node_b:
+            rem_edges += 1
+    return rem_edges
+
 
 def mcec(graph, df, m):
     mixed = []
 
-    rem_edges = 0
-    for edge in graph.edges():
-        # print(edge)
-        node_a = graph.nodes(data=True)[edge[0]]["class"]
-        node_b = graph.nodes(data=True)[edge[1]]["class"]
-
-        if node_a != node_b:
-            rem_edges += 1
-
+    rem_edges = get_amount_mixed(graph)
     mixed.append(rem_edges)
 
-    # print('Mixed Edges: ' + str(rem_edges))
-    classes = list(set(df["class"]))
-    # check distribution of mixed edges
-    for i in range(m):
-        j = 0
-        for edge in graph.edges():
-            # print(edge)
-            node_a = random.choice(classes)
-            node_b = random.choice(classes)
+    #print('Mixed Edges: ' + str(rem_edges))
 
-            if node_a != node_b:
-                j += 1
-        mixed.append(j)
+    for i in range(m):
+        ddf = df.copy()
+        ddf['class'] = np.random.permutation(df['class'])
+        #print(df.head(5))
+        nx.set_node_attributes(graph, ddf[['class']].to_dict('index'))
+        mixed.append(get_amount_mixed(graph))
 
     mixed = np.array(mixed)
+    #print(mixed)
     return len(mixed[mixed > rem_edges]) / m
+
