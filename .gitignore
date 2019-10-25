@@ -13,6 +13,8 @@ condaenv*
 *.hdf5
 *.h5
 *.file
+*.csv
+*.pdf
 
 **/.pytest_cache
 
@@ -22,7 +24,7 @@ data
 keys
 .python-version
 
-*.csv
+
 /data
 /SepMe/SepMe_ml.log
 /SepMe.egg-info/
