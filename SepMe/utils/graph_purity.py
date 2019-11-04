@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 import networkx as nx
 import math
@@ -131,6 +133,7 @@ def total_neighbour_purity(
 
 
 def ltcc(graph, df):
+
     rem_edges = []
     for edge in graph.edges():
         # print(edge)
@@ -139,6 +142,7 @@ def ltcc(graph, df):
 
         if node_a != node_b:
             rem_edges.append(edge)
+
 
     graph.remove_edges_from(rem_edges)
     undir_graph = graph.to_undirected()
@@ -153,11 +157,15 @@ def ltcc(graph, df):
         ]
     )
 
-    stats = {
-        c: np.max(a[a[:, 0] == c], axis=0)[1]
-        / np.sum(a[a[:, 0] == c], axis=0)[1]
-        for c in set(df["class"])
-    }
+
+    classes = set(df["class"])
+
+    #print(len(nx.connected_components(undir_graph)))
+    #print(a.shape)
+    stats = {}
+    for c in classes:
+        #print(c)
+        stats[c] = np.max(a[a[:, 0] == c], axis=0)[1] / np.sum(a[a[:, 0] == c], axis=0)[1]
 
     return stats
 
@@ -190,5 +198,7 @@ def mcec(graph, df, m):
 
     mixed = np.array(mixed)
     #print(mixed)
+    #reset node attr just in case
+    nx.set_node_attributes(graph, df[['class']].to_dict('index'))
     return len(mixed[mixed > rem_edges]) / m
 

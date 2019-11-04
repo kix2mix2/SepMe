@@ -1,12 +1,12 @@
 experiment_name: 'test'
-data_path: 'data/RESULTS_EUROVIS2015.csv'
-results_path: 'data/results/res_'
-folder_path: "data/EUROVIS_new/"
-graph_path: 'data/graphs/'
+data_path: 'data/orig_data/human_reduced_results.csv'
+folder_path: 'data/orig_data/input_data/reduced_clean/'
+results_path: 'data/orig_data/graph_results/res_'
+graph_path: 'data/orig_data/graphs/'
 graph_types:
   del:
-  mst:
-  knn: [1]
+#  mst:
+#  knn: [1]
 #  kncg: [2]
 #  gong: [0.35]
 #  rng:
@@ -14,7 +14,7 @@ graph_types:
 #  as: [0.01]
 #  cbsg: [0.2]
 purities:
-  type: ['mcec', 'ltcc', 'cp', 'ce', 'mv']
+  type: ['ltcc', 'cp', 'ce', 'mv', 'mcec']
   pessimism: [True, False]
   class: 1
 

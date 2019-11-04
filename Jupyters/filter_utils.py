@@ -71,16 +71,12 @@ def get_circles(df, size=2, factor=1):
     return pd.Series(circles)
 
 
-def plot_circles(ax, circle_sets, colors=['red', 'blue'], alphas=[1, .3]):
+def plot_occluded_circles(ax, circle_sets, colors=['red', 'blue'], alphas=[1, .3]):
     # ax = fig.add_subplot(1,1,1)
     for j, circles in enumerate(circle_sets):
         #print(len(circles))
         for i, circle in circles.items():
-            #print(type(circle))
-            if colors[j] =='red':
-                ax.add_patch(PolygonPatch(circle, fc = colors[j], ec = 'none', alpha = alphas[j], label=str('aaaaaaaaaaaaaaaaaaaa')))
-            else:
-                ax.add_patch(PolygonPatch(circle, fc = colors[j], ec = 'none', alpha = alphas[j]))
+            ax.add_patch(PolygonPatch(circle, fc = colors[j], ec = 'none', alpha = alphas[j]))
 
     ax.autoscale()
     ax.set_aspect('equal', 'datalim')
@@ -132,6 +128,7 @@ def remove_circles_by_partition(df, circle_series, n=2, percent = 0):
         # get all circles that still exist in the series with these indexes
 
         initial_area = cascaded_union(list(temp_circles)).area
+
         new_area = cascaded_union(list(temp_circles.drop([i]))).area
 
         #print((initial_area - new_area) / temp_circles[i].area)
@@ -140,8 +137,7 @@ def remove_circles_by_partition(df, circle_series, n=2, percent = 0):
             # print('Initial Area: %6.2f; New Area: %6.2f' %(initial_area,new_area))
             to_remove.append(i)
 
-    final_circles.drop(to_remove, inplace = True)
-    return final_circles, to_remove
+    return to_remove
 
 
 def get_plotting_order(circle_series, rem_indexes):
@@ -176,3 +172,17 @@ def get_plotting_order(circle_series, rem_indexes):
     # print(len(alphas))
 
     return plot_series, colors, alphas
+
+
+def plot_one(df, dims=[1, 2]):
+
+
+
+    return 1
+
+
+def plot_many(datas):
+    for df in datas:
+        plot_one(df, dims = [1, 2])
+
+

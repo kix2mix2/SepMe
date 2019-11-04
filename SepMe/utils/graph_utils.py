@@ -83,10 +83,10 @@ def calculate_purities(df, graph, purities):
 
     purity_dict = {}
 
-    if 'mcec' in purities['type']:
-        purity_dict['mcec'] = mcec(graph, df, 100)
     if 'ltcc' in purities['type']:
         purity_dict['ltcc'] = ltcc(graph, df)
+    if 'mcec' in purities['type']:
+        purity_dict['mcec'] = mcec(graph, df, 100)
 
     neighbour_purity_list = list(set(['cp', 'ce', 'mv']).intersection(set(purities['type'])))
 
