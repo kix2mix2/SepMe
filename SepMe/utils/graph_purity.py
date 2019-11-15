@@ -161,7 +161,6 @@ def ltcc(graph, df):
     classes = set(df["class"])
 
     #print(len(nx.connected_components(undir_graph)))
-    #print(a.shape)
     stats = {}
     for c in classes:
         #print(c)
