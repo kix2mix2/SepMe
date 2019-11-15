@@ -31,7 +31,7 @@ def save_progress(data_dict, results_path):
     return {}
 
 
-#@ray.remote
+@ray.remote
 def process_dataset(file, config):
     # logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
     data_dict = {}
@@ -40,7 +40,7 @@ def process_dataset(file, config):
 
     try:
         df = pd.read_csv(config['folder_path'] + file)
-        print(df.head())
+        #print(df.head())
     except FileNotFoundError:
         print("File {} doesn't exist".format(file))
         df = None
@@ -81,8 +81,8 @@ def process_dataset(file, config):
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
-    #ray.init(num_cpus=psutil.cpu_count())
-    #time.sleep(2.0)
+    ray.init(num_cpus=psutil.cpu_count())
+    time.sleep(2.0)
     start_time = time.time()
 
     with open(config_path, "r") as stream:
@@ -101,7 +101,7 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = ['tse300_tSNE_1-2.csv']
+    files = os.listdir(config['folder_path'])[0:6]
 
     results = []
     for i, file in enumerate(files):
@@ -110,17 +110,18 @@ def workflow(config_path, save):
 
         if file.endswith('.csv'):
             #results.append(process_dataset.remote(i, file, config))
-            results.append(process_dataset(file, config))
+            results.append(process_dataset.remote(file, config))
         else:
             continue
 
-    #results = ray.get(results)
+    results = ray.get(results)
 
     res_dict = {}
     for res in results:
         res_dict.update(res)
     results_path = config["results_path"] + config["experiment_name"] + ".csv"
     save_progress(res_dict, results_path)
+
 
     end_time = time.time()
     duration = end_time - start_time
