@@ -6,6 +6,7 @@ from scipy.spatial.distance import euclidean, cdist, pdist, squareform
 from scipy.spatial import Delaunay, ConvexHull
 import bisect
 from .workflow_utils import timeit
+import nglpy
 from profilehooks import profile
 
 
@@ -323,4 +324,22 @@ def get_CBSG(df, beta=0, dists=None):
             if novois == 0:
                 graph.add_edge(node_a, node_b, weight=dists[node_a][node_b])
         # break
+    return graph
+
+
+@timeit
+def get_cbsg(df, beta=0, dists=None):
+    graph = nx.Graph()
+    graph.add_nodes_from(df.iterrows())
+
+    point_set = np.array(df[['x', 'y']])
+    aGraph = nglpy.Graph(point_set, 'beta skeleton', 9, beta)
+    d = aGraph.neighbors()
+
+    for key, value in d.items():
+        for v in value:
+            graph.add_edge(key, v, weight = euclidean(
+                df.loc[key, ["x", "y"]], df.loc[v, ["x", "y"]]
+            ))
+
     return graph
