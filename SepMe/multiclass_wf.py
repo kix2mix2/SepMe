@@ -18,7 +18,15 @@ def save_progress(data_dict, results_path):
     for file in data_dict.keys():
         data_new[file] = flatten(data_dict[file], reducer=underscore_reducer)
     results_df = pd.DataFrame.from_dict(data_new, orient="index")
-    results_df.to_csv(results_path)
+
+    results_all = pd.read_csv(results_path, index_col = 0)
+    results_all = results_all.append(results_df, sort = False)
+    results_all.to_csv(results_path)
+
+    #results_df.to_csv(results_path)
+
+
+
     # if False:
     #     results_all = pd.read_csv(results_path, index_col = 0)
     #     results_all = results_all.append(results_df, sort = False)
@@ -32,8 +40,11 @@ def save_progress(data_dict, results_path):
 
 
 @ray.remote
-def process_dataset(file, config):
+def process_dataset(file, config, i, lf):
     # logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
+    print('------------')
+    print('---- Processing file {}/{}. Name: {}'.format(i, lf, file.split('.csv')[0]))
+
     data_dict = {}
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"
     code_name = file.split(".csv")[0]
@@ -76,7 +87,7 @@ def process_dataset(file, config):
 
 
 @click.command()
-@click.option("--config-path", default="configs/baby_config.yaml")
+@click.option("--config-path", default="SepMe/configs/sampling_config.yaml")
 @click.option("--save", default=5)
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
@@ -101,16 +112,15 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = os.listdir(config['folder_path'])[0:6]
+    files = os.listdir(config['folder_path'])
 
     results = []
+
+    lf=len(files)
     for i, file in enumerate(files):
-        print('------------')
-        print('---- Processing file {}/{}. Name: {}'.format(i, len(files), file.split('.csv')[0]))
 
         if file.endswith('.csv'):
-            #results.append(process_dataset.remote(i, file, config))
-            results.append(process_dataset.remote(file, config))
+            results.append(process_dataset.remote(file, config, i, lf))
         else:
             continue
 
@@ -129,6 +139,6 @@ def workflow(config_path, save):
 
 
 if __name__ == "__main__":
-    print("hello world!")
+    print("Hello World!")
 
     workflow()

@@ -9,6 +9,7 @@ from .workflow_utils import timeit
 import nglpy
 from profilehooks import profile
 
+KK_prints = 200
 
 def attr_difference(G, H):
     """Returns a new graph that contains the edges with attributes that exist in G but not in H.
@@ -137,7 +138,7 @@ def get_convex_hull(df):
 def get_mst(graph):
     return nx.minimum_spanning_tree(graph)
 
-
+@timeit
 def get_knntree(df, n=1):
     X = df[["x", "y"]]
     A = kneighbors_graph(X, n + 1, mode="distance", include_self=True)
@@ -186,7 +187,7 @@ def get_rng(df, graph_del, graph_mst):
 def get_kncg(df, K=4):
     graph = get_knntree(df, 1)
     for node_a, row in df.iterrows():
-        if node_a % 50:
+        if node_a % KK_prints == 0:
             print(K)
         node_a_coord = list(row[:2])
         ncns = []
@@ -232,7 +233,7 @@ def get_gong(df, y=0):
     y_dists = (1 - y) * dists
 
     for node_a, row_a in df.iterrows():
-        if node_a % 50:
+        if node_a % KK_prints ==0:
             print(y)
         node_a_coord = list(row_a[:2])  # O(dn)
         dist_idx = np.argsort(dists[node_a])  # O(nlog n)
@@ -328,11 +329,13 @@ def get_CBSG(df, beta=0, dists=None):
 
 
 @timeit
-def get_cbsg(df, beta=0, dists=None):
+def get_cbsg(df, beta=0):
     graph = nx.Graph()
     graph.add_nodes_from(df.iterrows())
 
     point_set = np.array(df[['x', 'y']])
+    point_set = point_set + 0.0001
+
     aGraph = nglpy.Graph(point_set, 'beta skeleton', 9, beta)
     d = aGraph.neighbors()
 
