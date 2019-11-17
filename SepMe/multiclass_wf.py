@@ -19,11 +19,11 @@ def save_progress(data_dict, results_path):
         data_new[file] = flatten(data_dict[file], reducer=underscore_reducer)
     results_df = pd.DataFrame.from_dict(data_new, orient="index")
 
-    results_all = pd.read_csv(results_path, index_col = 0)
-    results_all = results_all.append(results_df, sort = False)
-    results_all.to_csv(results_path)
+    #results_all = pd.read_csv(results_path, index_col = 0)
+    #results_all = results_all.append(results_df, sort = False)
+    #results_all.to_csv(results_path)
 
-    #results_df.to_csv(results_path)
+    results_df.to_csv(results_path)
 
 
 
@@ -51,13 +51,15 @@ def process_dataset(file, config, i, lf):
 
     try:
         df = pd.read_csv(config['folder_path'] + file)
+        if len(df) < 10:
+            return {}
         #print(df.head())
     except FileNotFoundError:
         print("File {} doesn't exist".format(file))
         df = None
         # logger.info("File '" + file + "' does not exist.")
         # data_dict[file_name] = 'n/a'
-        return []
+        return {}
 
     # process file
     if df is not None:
