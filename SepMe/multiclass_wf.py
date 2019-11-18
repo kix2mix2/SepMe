@@ -1,3 +1,5 @@
+import json
+
 import ray
 import os
 import time
@@ -25,20 +27,11 @@ def save_progress(data_dict, results_path):
 
     results_df.to_csv(results_path)
 
-    # if False:
-    #     results_all = pd.read_csv(results_path, index_col = 0)
-    #     results_all = results_all.append(results_df, sort = False)
-    #     results_all.to_csv(results_path)
-    #
-    # else:
-    #     results_df.to_csv(results_path)
-
-    # return empty dict to free memory.
     return {}
 
 
 @ray.remote
-def process_dataset(file, config, i, lf):
+def process_dataset(file, config, i, lf, dict_dir, save=False):
     # logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
     print("------------")
     print("---- Processing file {}/{}. Name: {}".format(i, lf, file.split(".csv")[0]))
@@ -80,6 +73,10 @@ def process_dataset(file, config, i, lf):
                         df, nx_dict[graph], config["purities"]
                     )
 
+    if save:
+        with open(dict_dir + file.split(".csv")[0] + ".json", "w") as fp:
+            json.dump(data_dict, fp)
+
     return data_dict
 
 
@@ -109,7 +106,11 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = os.listdir(config["folder_path"])
+    dict_dir = config["dict_path"] + config["experiment_name"] + "/"
+    if not os.path.exists(dict_dir):
+        os.makedirs(dict_dir)
+
+    files = os.listdir(config["folder_path"])[:20]
     # files = ['boston_umap2-mds2.csv']
     results = []
 
@@ -117,7 +118,9 @@ def workflow(config_path, save):
     for i, file in enumerate(files):
 
         if file.endswith(".csv"):
-            results.append(process_dataset.remote(file, config, i, lf))
+            results.append(
+                process_dataset.remote(file, config, i, lf, dict_dir, save=True)
+            )
         else:
             continue
 
