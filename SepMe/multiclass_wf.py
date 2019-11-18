@@ -53,12 +53,9 @@ def process_dataset(file, config, i, lf):
         df = pd.read_csv(config['folder_path'] + file)
         if len(df) < 10:
             return {}
-        #print(df.head())
     except FileNotFoundError:
         print("File {} doesn't exist".format(file))
         df = None
-        # logger.info("File '" + file + "' does not exist.")
-        # data_dict[file_name] = 'n/a'
         return {}
 
     # process file
@@ -114,7 +111,7 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = os.listdir(config['folder_path'])
+    files = os.listdir(config['folder_path'])[0:20]
 
     results = []
 

@@ -15,7 +15,5 @@ graph_types:
 #  cbsg: [0.2]
 purities:
   type: ['ltcc', 'cp', 'ce', 'mv', 'mcec']
-  pessimism: [True, False]
-  class: 1
 
 

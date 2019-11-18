@@ -88,10 +88,7 @@ def calculate_purities(df, graph, purities):
     if 'mcec' in purities['type']:
         purity_dict['mcec'] = mcec(graph, df, 100)
 
-    neighbour_purity_list = list(set(['cp', 'ce', 'mv']).intersection(set(purities['type'])))
-
-    # print(total_neighbour_purity(df, graph, purities['class'], neighbour_purity_list, purities['pessimism']))
-    for pessimism in purities['pessimism']:
-        purity_dict.update(total_neighbour_purity(df, graph, None, neighbour_purity_list, pessimism))
+    neighbour_purity_list = list({'cp', 'ce', 'mv'}.intersection(set(purities['type'])))
+    purity_dict.update(total_neighbour_purity(df, graph, neighbour_purity_list))
 
     return purity_dict
