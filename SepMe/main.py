@@ -16,12 +16,13 @@ import pickle
 
 from SepMe.utils.logger import get_logger
 
+
 @timeit
 def save_progress(data_dict, results_path):
     data_new = {}
     for file in data_dict.keys():
-        data_new[file] = flatten(data_dict[file], reducer = underscore_reducer)
-    results_df = pd.DataFrame.from_dict(data_new, orient = "index")
+        data_new[file] = flatten(data_dict[file], reducer=underscore_reducer)
+    results_df = pd.DataFrame.from_dict(data_new, orient="index")
     results_df.to_csv(results_path)
     # if False:
     #     results_all = pd.read_csv(results_path, index_col = 0)
@@ -34,26 +35,27 @@ def save_progress(data_dict, results_path):
     # return empty dict to free memory.
     return {}
 
+
 @ray.remote
 def process_dataset(i, file, config, class_num):
-    #logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
-    print('----------------- ' + str(i) + ' -------------------')
+    # logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
+    print("----------------- " + str(i) + " -------------------")
     data_dict = {}
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"
     code_name = file.split(".csv")[0] + "_cls" + str(class_num[i])
     file_name = config["folder_path"] + code_name + ".csv"
 
     try:
-        df = pd.read_csv(file_name, names = ["x", "y", "class"])
+        df = pd.read_csv(file_name, names=["x", "y", "class"])
     except FileNotFoundError:
         df = None
-        #logger.info("File '" + file + "' does not exist.")
+        # logger.info("File '" + file + "' does not exist.")
         # data_dict[file_name] = 'n/a'
         return
 
     # process file
     if df is not None:
-        with mlflow.start_run(run_name = code_name) as active_run:
+        with mlflow.start_run(run_name=code_name):
             print("Runtime: " + code_name)
             print("df_size", len(df))
 
@@ -62,24 +64,25 @@ def process_dataset(i, file, config, class_num):
             graph_path = graph_dir + code_name + "_graphs.pickle"
             nx_dict = calculate_graphs(graph_path, df, config["graph_types"])
 
-            #logger.info("Calculating purities..")
+            # logger.info("Calculating purities..")
             for graph in nx_dict.keys():
                 data_dict[code_name][graph] = {}
                 if type(nx_dict[graph]) is dict:
                     for subgraph in nx_dict[graph].keys():
-                        data_dict[code_name][graph][subgraph] = calculate_purities(df, nx_dict[graph][subgraph],
-                                                                                   config["purities"],
-                                                                                   )
+                        data_dict[code_name][graph][subgraph] = calculate_purities(
+                            df, nx_dict[graph][subgraph], config["purities"],
+                        )
                 else:
-                    data_dict[code_name][graph] = calculate_purities(df, nx_dict[graph], config["purities"])
-
+                    data_dict[code_name][graph] = calculate_purities(
+                        df, nx_dict[graph], config["purities"]
+                    )
 
     return data_dict
 
 
 @click.command()
-@click.option("--config-path", default = "configs/baby_config.yaml")
-@click.option("--save", default = 5)
+@click.option("--config-path", default="configs/baby_config.yaml")
+@click.option("--save", default=5)
 def workflow(config_path, save):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
@@ -95,12 +98,12 @@ def workflow(config_path, save):
             return
 
     logger.info(config)
-    logger.info('Number of processors: '+ str(psutil.cpu_count()-2))
+    logger.info("Number of processors: " + str(psutil.cpu_count() - 2))
     mlflow.set_experiment(config["experiment_name"])
 
     # read in list of input datasets
     data_df = pd.read_csv(config["data_path"])
-    #data_df = data_df[:20]
+    # data_df = data_df[:20]
 
     # make a directory to save graphs
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"
@@ -116,7 +119,7 @@ def workflow(config_path, save):
 
     results = ray.get(results)
 
-    res_dict={}
+    res_dict = {}
     for res in results:
         res_dict.update(res)
     results_path = config["results_path"] + config["experiment_name"] + ".csv"
@@ -128,7 +131,6 @@ def workflow(config_path, save):
 
 
 if __name__ == "__main__":
-    print('hello')
+    print("hello")
 
     workflow()
-

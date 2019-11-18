@@ -27,7 +27,7 @@ def calculate_dsc(sample_df, class_names):
 
     a = np.argmin(cdist(sample_df[["x", "y"]], centroids_list), axis=1)
 
-    if class_names == True:
+    if class_names is True:
         names = [list(centroids.keys())[aa] for aa in a]
     else:
         names = a
@@ -41,7 +41,7 @@ def calculate_dsc(sample_df, class_names):
 @click.option("--folder-path", default="data/EUROVIS_new/")
 @click.option("--class_names", default=False)
 def dsc(data_path, folder_path, class_names):
-    with mlflow.start_run(run_name="filter_study_data") as mlrun:
+    with mlflow.start_run(run_name="filter_study_data"):
         logger.log_param("data_path", data_path)
         logger.log_param("folder_path", folder_path)
 

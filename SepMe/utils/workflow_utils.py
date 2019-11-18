@@ -32,6 +32,7 @@ def timeit(f):
 
     return wrap
 
+
 def timeit_print(f):
     @wraps(f)
     def wrap(*args, **kw):
@@ -56,18 +57,13 @@ def _already_ran(entry_point_name, parameters, git_commit, experiment_id=None):
     parameters, and experiment id already ran. The run must have completed
     successfully and have at least the parameters provided.
     """
-    experiment_id = (
-        experiment_id if experiment_id is not None else _get_experiment_id()
-    )
+    experiment_id = experiment_id if experiment_id is not None else _get_experiment_id()
     client = mlflow.tracking.MlflowClient()
     all_run_infos = reversed(client.list_run_infos(experiment_id))
     for run_info in all_run_infos:
         full_run = client.get_run(run_info.run_id)
         tags = full_run.data.tags
-        if (
-            tags.get(mlflow_tags.MLFLOW_PROJECT_ENTRY_POINT, None)
-            != entry_point_name
-        ):
+        if tags.get(mlflow_tags.MLFLOW_PROJECT_ENTRY_POINT, None) != entry_point_name:
             continue
         match_failed = False
         for param_key, param_value in six.iteritems(parameters):
@@ -119,9 +115,5 @@ def _get_or_run(uri, entrypoint, parameters, git_commit, use_cache=True):
         "Launching new run for entrypoint=%s and parameters=%s"
         % (entrypoint, parameters)
     )
-    submitted_run = mlflow.run(
-        uri, entrypoint, parameters=parameters, use_conda=False
-    )
+    submitted_run = mlflow.run(uri, entrypoint, parameters=parameters, use_conda=False)
     return mlflow.tracking.MlflowClient().get_run(submitted_run.run_id)
-
-

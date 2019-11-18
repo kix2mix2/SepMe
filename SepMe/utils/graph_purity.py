@@ -16,9 +16,7 @@ def get_vote(neighbours, pessimism=True, target_class=1):
     first_mode = stats.mode(neighbours)
 
     nn = neighbours.copy()
-    nn.remove(
-        first_mode.mode[0]
-    )  # this removes the first occurence of the mode
+    nn.remove(first_mode.mode[0])  # this removes the first occurence of the mode
     second_mode = stats.mode(nn)
 
     if first_mode.count[0] == second_mode.count[0]:
@@ -37,8 +35,6 @@ def get_vote(neighbours, pessimism=True, target_class=1):
 def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
     # per datapoint results
     # we don't use networkx to store attributes in because it's slow and annoying
-    node_scores = []
-
     classes = set(df["class"])
     number_of_classes = len(classes)
     if number_of_classes == 1:
@@ -48,10 +44,9 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
     ce = []
     mv_true = []
     mv_false = []
-    wv = []
     neighbours = []
 
-    for node in graph.nodes(data = True):
+    for node in graph.nodes(data=True):
         neighbour_classes = list(df.loc[graph.neighbors(node[0]), "class"])
         amount_of_neighbours = len(neighbour_classes)
         neighbours.append(amount_of_neighbours)
@@ -80,13 +75,9 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
                     if self_class == c:
                         qi = (count_of_self + 1) / (amount_of_neighbours + 1)
                     else:
-                        qi = neighbour_classes.count(c) / (
-                                amount_of_neighbours + 1
-                        )
+                        qi = neighbour_classes.count(c) / (amount_of_neighbours + 1)
 
-                    hi -= (
-                        qi * math.log(qi, number_of_classes) if qi != 0 else 0
-                    )
+                    hi -= qi * math.log(qi, number_of_classes) if qi != 0 else 0
 
                 # node[1]['ce'] = hi
 
@@ -113,36 +104,24 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
         if "wv" in purity_type:
             pass
 
-    if len(cp) == len(df):
-        df["cp"] = cp
-    if len(ce) == len(df):
-        df["ce"] = ce
-    if len(mv_true) == len(df):
-        df["mv_true"] = mv_true
-    if len(mv_false) == len(df):
-        df["mv_false"] = mv_false
-    if len(wv) == len(df):
-        df["wv"] = wv
-    if len(neighbours) == len(df):
-        df["neighbours"] = neighbours
-
-    print(df.head(10))
     return df
 
 
 def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
     df = neighbour_purity(graph, df, purity_type)
     stats = {}
-    stats['cp_a'] = np.mean(df['cp'])
-    stats['ce_a'] = np.sum(df['ce'] * df['neighbours']) / np.sum(df['neighbours'])
-    stats['mv_a_true'] = np.mean(df['mv_true'])
-    stats['mv_a_false'] = np.mean(df['mv_false'])
+    stats["cp_a"] = np.mean(df["cp"])
+    stats["ce_a"] = np.sum(df["ce"] * df["neighbours"]) / np.sum(df["neighbours"])
+    stats["mv_a_true"] = np.mean(df["mv_true"])
+    stats["mv_a_false"] = np.mean(df["mv_false"])
 
-    for cc in set(df['class']):
-        stats['cp_{}'.format(cc)] = np.mean(df[df['class'] == cc, ['cp']])
-        stats['ce_{}'.format(cc)] = np.sum(df[df['class'] == cc, ['ce']] * df[df['class'] == cc, ['neighbours']]) / np.sum(df[df['class'] == cc, ['neighbours']])
-        stats['mv_{}_true'.format(cc)] = np.mean(df[df['class'] == cc, ['mv_true']])
-        stats['mv_{}_false'.format(cc)] = np.mean(df[df['class'] == cc, ['mv_false']])
+    for cc in set(df["class"]):
+        stats["cp_{}".format(cc)] = np.mean(df[df["class"] == cc, ["cp"]])
+        stats["ce_{}".format(cc)] = np.sum(
+            df[df["class"] == cc, ["ce"]] * df[df["class"] == cc, ["neighbours"]]
+        ) / np.sum(df[df["class"] == cc, ["neighbours"]])
+        stats["mv_{}_true".format(cc)] = np.mean(df[df["class"] == cc, ["mv_true"]])
+        stats["mv_{}_false".format(cc)] = np.mean(df[df["class"] == cc, ["mv_false"]])
 
     return stats
 
@@ -151,8 +130,8 @@ def ltcc(graph, df):
     rem_edges = []
     for edge in graph.edges():
         # print(edge)
-        node_a = graph.nodes(data = True)[edge[0]]["class"]
-        node_b = graph.nodes(data = True)[edge[1]]["class"]
+        node_a = graph.nodes(data=True)[edge[0]]["class"]
+        node_b = graph.nodes(data=True)[edge[1]]["class"]
 
         if node_a != node_b:
             rem_edges.append(edge)
@@ -162,10 +141,7 @@ def ltcc(graph, df):
     undir_graph = add_node_attr(undir_graph, df, False)
     a = np.array(
         [
-            [
-                list(undir_graph.subgraph(c).nodes(data = True))[0][1]["class"],
-                len(c),
-            ]
+            [list(undir_graph.subgraph(c).nodes(data=True))[0][1]["class"], len(c)]
             for c in nx.connected_components(undir_graph)
         ]
     )
@@ -173,9 +149,11 @@ def ltcc(graph, df):
     classes = set(df["class"])
     stats = {}
 
-    stats['all'] = np.max(a, axis = 0)[1] / np.sum(a, axis = 0)[1]
+    stats["all"] = np.max(a, axis=0)[1] / np.sum(a, axis=0)[1]
     for c in classes:
-        stats[c] = np.max(a[a[:, 0] == c], axis = 0)[1] / np.sum(a[a[:, 0] == c], axis = 0)[1]
+        stats[c] = (
+            np.max(a[a[:, 0] == c], axis=0)[1] / np.sum(a[a[:, 0] == c], axis=0)[1]
+        )
 
     return stats
 
@@ -184,8 +162,8 @@ def get_amount_mixed(graph):
     rem_edges = 0
     for edge in graph.edges():
         # print(edge)
-        node_a = graph.nodes(data = True)[edge[0]]['class']
-        node_b = graph.nodes(data = True)[edge[1]]['class']
+        node_a = graph.nodes(data=True)[edge[0]]["class"]
+        node_b = graph.nodes(data=True)[edge[1]]["class"]
 
         if node_a != node_b:
             rem_edges += 1
@@ -199,11 +177,11 @@ def mcec(graph, df, m):
 
     for i in range(m):
         ddf = df.copy()
-        ddf['class'] = np.random.permutation(df['class'])
-        nx.set_node_attributes(graph, ddf[['class']].to_dict('index'))
+        ddf["class"] = np.random.permutation(df["class"])
+        nx.set_node_attributes(graph, ddf[["class"]].to_dict("index"))
         mixed.append(get_amount_mixed(graph))
 
     mixed = np.array(mixed)
     # reset node attr just in case
-    nx.set_node_attributes(graph, df[['class']].to_dict('index'))
+    nx.set_node_attributes(graph, df[["class"]].to_dict("index"))
     return len(mixed[mixed > rem_edges]) / m

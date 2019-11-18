@@ -19,13 +19,11 @@ def save_progress(data_dict, results_path):
         data_new[file] = flatten(data_dict[file], reducer=underscore_reducer)
     results_df = pd.DataFrame.from_dict(data_new, orient="index")
 
-    #results_all = pd.read_csv(results_path, index_col = 0)
-    #results_all = results_all.append(results_df, sort = False)
-    #results_all.to_csv(results_path)
+    # results_all = pd.read_csv(results_path, index_col = 0)
+    # results_all = results_all.append(results_df, sort = False)
+    # results_all.to_csv(results_path)
 
     results_df.to_csv(results_path)
-
-
 
     # if False:
     #     results_all = pd.read_csv(results_path, index_col = 0)
@@ -42,15 +40,15 @@ def save_progress(data_dict, results_path):
 @ray.remote
 def process_dataset(file, config, i, lf):
     # logger = get_logger("SepMe_"+str(i), "../sepme_" + str(i) +'.log')
-    print('------------')
-    print('---- Processing file {}/{}. Name: {}'.format(i, lf, file.split('.csv')[0]))
+    print("------------")
+    print("---- Processing file {}/{}. Name: {}".format(i, lf, file.split(".csv")[0]))
 
     data_dict = {}
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"
     code_name = file.split(".csv")[0]
 
     try:
-        df = pd.read_csv(config['folder_path'] + file)
+        df = pd.read_csv(config["folder_path"] + file)
         if len(df) < 10:
             return {}
     except FileNotFoundError:
@@ -60,7 +58,7 @@ def process_dataset(file, config, i, lf):
 
     # process file
     if df is not None:
-        with mlflow.start_run(run_name=code_name) as active_run:
+        with mlflow.start_run(run_name=code_name):
             print("Runtime: " + code_name)
             print("df_size", len(df))
 
@@ -111,14 +109,14 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = os.listdir(config['folder_path'])[0:20]
+    files = os.listdir(config["folder_path"])[0:20]
 
     results = []
 
-    lf=len(files)
+    lf = len(files)
     for i, file in enumerate(files):
 
-        if file.endswith('.csv'):
+        if file.endswith(".csv"):
             results.append(process_dataset.remote(file, config, i, lf))
         else:
             continue
@@ -130,7 +128,6 @@ def workflow(config_path, save):
         res_dict.update(res)
     results_path = config["results_path"] + config["experiment_name"] + ".csv"
     save_progress(res_dict, results_path)
-
 
     end_time = time.time()
     duration = end_time - start_time

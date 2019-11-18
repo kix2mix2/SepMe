@@ -1,15 +1,14 @@
-import pandas as pd
-import numpy as np
-import networkx as nx
-from sklearn.neighbors import kneighbors_graph, radius_neighbors_graph
-from scipy.spatial.distance import euclidean, cdist, pdist, squareform
-from scipy.spatial import Delaunay, ConvexHull
 import bisect
-from .workflow_utils import timeit
+import networkx as nx
 import nglpy
-from profilehooks import profile
+import numpy as np
+from scipy.spatial import Delaunay, ConvexHull
+from scipy.spatial.distance import euclidean, pdist, squareform
+from sklearn.neighbors import kneighbors_graph, radius_neighbors_graph
+from .workflow_utils import timeit
 
 KK_prints = 200
+
 
 def attr_difference(G, H):
     """Returns a new graph that contains the edges with attributes that exist in G but not in H.
@@ -47,18 +46,18 @@ def attr_difference(G, H):
 
 def add_node_attr(graph, df, color=False):
     # add node position and class as attributes
-    nx.set_node_attributes(graph, df[['class']].to_dict('index'))
-    df['pos'] = list(zip(df.x, df.y))
-    nx.set_node_attributes(graph, df[['pos']].to_dict('index'))
+    nx.set_node_attributes(graph, df[["class"]].to_dict("index"))
+    df["pos"] = list(zip(df.x, df.y))
+    nx.set_node_attributes(graph, df[["pos"]].to_dict("index"))
     colors = []
 
     if color:
         for n in graph.nodes():
             if color:
-                if int(df.loc[n, ['class']]):
-                    colors.append('blue')
+                if int(df.loc[n, ["class"]]):
+                    colors.append("blue")
                 else:
-                    colors.append('red')
+                    colors.append("red")
             return (graph, colors)
     else:
         return graph
@@ -122,9 +121,7 @@ def get_convex_hull(df):
         e = (
             edge[0],
             edge[1],
-            euclidean(
-                df.loc[edge[0], ["x", "y"]], df.loc[edge[1], ["x", "y"]]
-            ),
+            euclidean(df.loc[edge[0], ["x", "y"]], df.loc[edge[1], ["x", "y"]]),
         )
         weighted_edges.append(e)
 
@@ -137,6 +134,7 @@ def get_convex_hull(df):
 
 def get_mst(graph):
     return nx.minimum_spanning_tree(graph)
+
 
 @timeit
 def get_knntree(df, n=1):
@@ -168,12 +166,8 @@ def get_rng(df, graph_del, graph_mst):
         edge_weight = edge[2]["weight"]
         for possible_blocker in candidate_graph.nodes(data=True):
             pos = possible_blocker[1]["pos"]
-            dist_n0 = euclidean(
-                pos, candidate_graph.nodes(data=True)[edge[0]]["pos"]
-            )
-            dist_n1 = euclidean(
-                pos, candidate_graph.nodes(data=True)[edge[1]]["pos"]
-            )
+            dist_n0 = euclidean(pos, candidate_graph.nodes(data=True)[edge[0]]["pos"])
+            dist_n1 = euclidean(pos, candidate_graph.nodes(data=True)[edge[1]]["pos"])
             if dist_n0 < edge_weight and dist_n1 < edge_weight:
                 remove_list.append(edge)
 
@@ -217,9 +211,7 @@ def get_kncg(df, K=4):
             # print(dist)
             ncns.append(chosen_one)
             graph.add_edge(
-                node_a,
-                chosen_one,
-                weight=euclidean(node_a_coord, chosen_one_coord),
+                node_a, chosen_one, weight=euclidean(node_a_coord, chosen_one_coord),
             )
     return graph
 
@@ -233,15 +225,15 @@ def get_gong(df, y=0):
     y_dists = (1 - y) * dists
 
     for node_a, row_a in df.iterrows():
-        if node_a % KK_prints ==0:
+        if node_a % KK_prints == 0:
             print(y)
-        node_a_coord = list(row_a[:2])  # O(dn)
+        # node_a_coord = list(row_a[:2])  # O(dn)
         dist_idx = np.argsort(dists[node_a])  # O(nlog n)
         for node_b in dist_idx:
             if node_a == node_b:
                 continue
 
-            node_b_coord = list(df.loc[node_b, ["x", "y"]])
+            # node_b_coord = list(df.loc[node_b, ["x", "y"]])
 
             d_i = y_dists[node_a][node_b]
             first_greater = bisect.bisect_left(dists[node_a][dist_idx], d_i)
@@ -278,12 +270,13 @@ def get_as(df, alpha=0.05):
 
 
 # maybe don't use this
+"""
 @timeit
 def get_CBSG(df, beta=0, dists=None):
     graph = nx.Graph()
     graph.add_nodes_from(df.iterrows())
 
-    if dists == None:
+    if dists is None:
         dists = pdist(df[["x", "y"]])
         dists = squareform(dists)
 
@@ -326,6 +319,7 @@ def get_CBSG(df, beta=0, dists=None):
                 graph.add_edge(node_a, node_b, weight=dists[node_a][node_b])
         # break
     return graph
+"""
 
 
 @timeit
@@ -333,16 +327,16 @@ def get_cbsg(df, beta=0):
     graph = nx.Graph()
     graph.add_nodes_from(df.iterrows())
 
-    point_set = np.array(df[['x', 'y']])
+    point_set = np.array(df[["x", "y"]])
     point_set = point_set + 0.0001
 
-    aGraph = nglpy.Graph(point_set, 'beta skeleton', 9, beta)
+    aGraph = nglpy.Graph(point_set, "beta skeleton", 9, beta)
     d = aGraph.neighbors()
 
     for key, value in d.items():
         for v in value:
-            graph.add_edge(key, v, weight = euclidean(
-                df.loc[key, ["x", "y"]], df.loc[v, ["x", "y"]]
-            ))
+            graph.add_edge(
+                key, v, weight=euclidean(df.loc[key, ["x", "y"]], df.loc[v, ["x", "y"]])
+            )
 
     return graph
