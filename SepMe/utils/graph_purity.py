@@ -45,11 +45,13 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
     mv_true = []
     mv_false = []
     neighbours = []
+    nns = []
 
     for node in graph.nodes(data=True):
         neighbour_classes = list(df.loc[graph.neighbors(node[0]), "class"])
         amount_of_neighbours = len(neighbour_classes)
         neighbours.append(amount_of_neighbours)
+        nns.append(neighbour_classes)
 
         self_class = node[1]["class"]
         count_of_self = neighbour_classes.count(self_class)
@@ -86,24 +88,36 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
         if "mv" in purity_type:
 
             if amount_of_neighbours == 0:
-                mv_true.append(node[1]["class"])
-                mv_false.append(node[1]["class"])
+                mv_true.append(1.0)
+                mv_false.append(1.0)
             else:
                 vote = get_vote(neighbour_classes, True, self_class)
                 if vote == self_class:
-                    mv_true.append(1)
+                    mv_true.append(1.0)
                 else:
-                    mv_true.append(0)
+                    mv_true.append(0.0)
 
                 vote = get_vote(neighbour_classes, False, self_class)
                 if vote == self_class:
-                    mv_false.append(1)
+                    mv_false.append(1.0)
                 else:
-                    mv_false.append(0)
+                    mv_false.append(0.0)
 
         if "wv" in purity_type:
             pass
 
+    if len(neighbours) == len(df):
+        df["mv_true"] = mv_true
+        df["mv_false"] = mv_false
+        df["neighbours"] = neighbours
+        df["ce"] = ce
+        df["cp"] = cp
+        df["nns"] = nns
+
+    # print(df.columns)
+    # print('======')
+    # print(df.head())
+    df.to_csv("heyhey.csv")
     return df
 
 
@@ -116,28 +130,30 @@ def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
     stats["mv_a_false"] = np.mean(df["mv_false"])
 
     for cc in set(df["class"]):
-        stats["cp_{}".format(cc)] = np.mean(df[df["class"] == cc, ["cp"]])
+        stats["cp_{}".format(cc)] = np.mean(df.loc[df["class"] == cc, "cp"])
         stats["ce_{}".format(cc)] = np.sum(
-            df[df["class"] == cc, ["ce"]] * df[df["class"] == cc, ["neighbours"]]
-        ) / np.sum(df[df["class"] == cc, ["neighbours"]])
-        stats["mv_{}_true".format(cc)] = np.mean(df[df["class"] == cc, ["mv_true"]])
-        stats["mv_{}_false".format(cc)] = np.mean(df[df["class"] == cc, ["mv_false"]])
+            df.loc[df["class"] == cc, "ce"] * df.loc[df["class"] == cc, "neighbours"]
+        ) / np.sum(df.loc[df["class"] == cc, "neighbours"])
+        stats["mv_{}_true".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_true"])
+        stats["mv_{}_false".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_false"])
 
     return stats
 
 
 def ltcc(graph, df):
+    G = graph.copy()
+
     rem_edges = []
-    for edge in graph.edges():
+    for edge in G.edges():
         # print(edge)
-        node_a = graph.nodes(data=True)[edge[0]]["class"]
-        node_b = graph.nodes(data=True)[edge[1]]["class"]
+        node_a = G.nodes(data=True)[edge[0]]["class"]
+        node_b = G.nodes(data=True)[edge[1]]["class"]
 
         if node_a != node_b:
             rem_edges.append(edge)
 
-    graph.remove_edges_from(rem_edges)
-    undir_graph = graph.to_undirected()
+    G.remove_edges_from(rem_edges)
+    undir_graph = G.to_undirected()
     undir_graph = add_node_attr(undir_graph, df, False)
     a = np.array(
         [
@@ -174,6 +190,7 @@ def mcec(graph, df, m):
     mixed = []
     rem_edges = get_amount_mixed(graph)
     mixed.append(rem_edges)
+    # print(rem_edges)
 
     for i in range(m):
         ddf = df.copy()
@@ -182,6 +199,7 @@ def mcec(graph, df, m):
         mixed.append(get_amount_mixed(graph))
 
     mixed = np.array(mixed)
+    # print(mixed)
     # reset node attr just in case
     nx.set_node_attributes(graph, df[["class"]].to_dict("index"))
     return len(mixed[mixed > rem_edges]) / m

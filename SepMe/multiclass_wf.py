@@ -109,8 +109,8 @@ def workflow(config_path, save):
     if not os.path.exists(graph_dir):
         os.makedirs(graph_dir)
 
-    files = os.listdir(config["folder_path"])[0:20]
-
+    files = os.listdir(config["folder_path"])
+    # files = ['boston_umap2-mds2.csv']
     results = []
 
     lf = len(files)
