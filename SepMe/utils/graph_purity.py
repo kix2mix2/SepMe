@@ -117,7 +117,7 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
     # print(df.columns)
     # print('======')
     # print(df.head())
-    df.to_csv("heyhey.csv")
+    # df.to_csv("heyhey.csv")
     return df
 
 
