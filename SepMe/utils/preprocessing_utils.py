@@ -481,10 +481,9 @@ def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
 
         file_name = save_folder + nn + "_" + dim_x + "-" + dim_y + ".csv"
 
-        #             if os.path.exists(file_name) is True:
-        #                 print('File was already processed. Skipping: {}'.format(file_name))
-
-        #                 continue
+        if os.path.exists(fig_folder + names[i] + ".png") is True:
+            print("File was already processed. Skipping: {}".format(file_name))
+            return
 
         ddf, circles = preprocess_df(
             data, [dim_x, dim_y], size=0.5, occlusion=0.1, save=file_name, sort=True
