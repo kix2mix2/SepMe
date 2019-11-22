@@ -1,16 +1,10 @@
-import pandas as pd
-import numpy as np
-import os
-import sys
-import matplotlib
+from operator import sub
 import matplotlib.pyplot as plt
+import pandas as pd
+from descartes import PolygonPatch
 from shapely.geometry import Point
 from shapely.ops import cascaded_union
-from descartes import PolygonPatch, patch
-from operator import sub
-from sklearn.preprocessing import minmax_scale
-from matplotlib.collections import PatchCollection
-from sklearn.utils import shuffle
+from sklearn.model_selection import train_test_split
 
 
 def get_data(
@@ -190,3 +184,10 @@ def plot_one(df, dims=[1, 2]):
 def plot_many(datas):
     for df in datas:
         plot_one(df, dims=[1, 2])
+
+
+def sample_data(df, y_col, amount, save=False):
+    X_train, X_test, y_train, y_test = train_test_split(
+        df, y_col, test_size=amount, random_state=21
+    )
+    return y_train.index
