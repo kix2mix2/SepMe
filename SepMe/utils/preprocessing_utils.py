@@ -465,7 +465,7 @@ def save_and_plot_all_dimensions(file, orig_dir, save_dir, fig_dir, class_cols):
 
 @ray.remote
 def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
-    print("Processing file {}/{}. Name: {}".format(i, len(names), nn))
+
     method = nn.split("_")[-1]
     # print(method)
     if method in {"PCA", "RobPCA"}:
@@ -495,6 +495,8 @@ def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
         plot_colored_circles(ax, ddf, circles)
         fig.savefig(fig_folder + names[i] + ".png")
         plt.close("all")
+
+        print("Processed file {}/{}. Name: {}".format(i, len(names), nn))
 
     except FileNotFoundError:
         # print(nn)

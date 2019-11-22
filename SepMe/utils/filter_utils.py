@@ -1,3 +1,4 @@
+import os
 from operator import sub
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -186,8 +187,32 @@ def plot_many(datas):
         plot_one(df, dims=[1, 2])
 
 
-def sample_data(df, y_col, amount, save=False):
+def sample_data(df, y_col, amount):
     X_train, X_test, y_train, y_test = train_test_split(
         df, y_col, test_size=amount, random_state=21
     )
-    return y_train.index
+    return y_test.index
+
+
+def create_sample_from_index(
+    df,
+    index,
+    fig_folder="../../data/orig_data/figures/reduced_data/",
+    csv_folder="../../data/orig_data/input_data/Reduced_orig_data/reduced_clean/",
+):
+
+    if not os.path.exists(fig_folder + "sample/"):
+        os.makedirs(fig_folder + "sample/")
+
+    if not os.path.exists(csv_folder + "sample/"):
+        os.makedirs(csv_folder + "sample/")
+
+    pngs = [row + ".png" for i, row in df.loc[index, "index"].items()]
+    for png in pngs:
+        if os.path.exists(fig_folder + png):
+            os.replace(fig_folder + png, fig_folder + "sample/" + png)
+
+    csvs = [row + ".csv" for i, row in df.loc[index, "index"].items()]
+    for csv in csvs:
+        if os.path.exists(csv_folder + csv):
+            os.replace(csv_folder + csv, csv_folder + "sample/" + csv)
