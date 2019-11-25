@@ -482,6 +482,7 @@ def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
         file_name = save_folder + nn + "_" + dim_x + "-" + dim_y + ".csv"
 
         if os.path.exists(fig_folder + names[i] + ".png") is True:
+
             print("File was already processed. Skipping: {}".format(file_name))
             print("Processed file {}/{}. Name: {}".format(i, len(names), nn))
             return
