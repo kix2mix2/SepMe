@@ -5,7 +5,7 @@ import numpy as np
 from scipy.spatial import Delaunay, ConvexHull
 from scipy.spatial.distance import euclidean, pdist, squareform
 from sklearn.neighbors import kneighbors_graph, radius_neighbors_graph
-from .workflow_utils import timeit
+from SepMe.utils.workflow_utils import timeit
 
 KK_prints = 200
 

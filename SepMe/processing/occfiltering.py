@@ -1,33 +1,9 @@
-import os
 from operator import sub
 import matplotlib.pyplot as plt
 import pandas as pd
 from descartes import PolygonPatch
 from shapely.geometry import Point
 from shapely.ops import cascaded_union
-from sklearn.model_selection import train_test_split
-
-
-def get_data(
-    ii=5,
-    data_path="../data/RESULTS_EUROVIS2015.csv",
-    folder_path="../data/EUROVIS_new/",
-):
-    df = pd.read_csv(data_path)
-    for i, file in enumerate(df.fileName):
-        file_name = (
-            folder_path + file.split(".csv")[0] + "_cls" + str(df.classNum[i]) + ".csv"
-        )
-        try:
-            sample_df = pd.read_csv(file_name, names=["x", "y", "class"])
-            if i == ii:
-                break
-            # print(sample_df.head(1))
-        except FileNotFoundError:
-            print("File '" + file + "' does not exist.")
-
-    # sample_df.head()
-    return sample_df
 
 
 def get_aspect(ax):
@@ -177,45 +153,16 @@ def get_plotting_order(circle_series, rem_indexes):
     return plot_series, colors, alphas
 
 
-def plot_one(df, dims=[1, 2]):
-
-    return 1
-
-
-def plot_many(datas):
-    for df in datas:
-        plot_one(df, dims=[1, 2])
-
-
-def sample_data(df, y_col, amount):
-    X_train, X_test, y_train, y_test = train_test_split(
-        df, y_col, test_size=amount, random_state=21
-    )
-    return y_test.index
-
-
-def create_sample_from_index(
-    df,
-    index,
-    fig_folder="../../data/orig_data/figures/reduced_data/",
-    csv_folder="../../data/orig_data/input_data/Reduced_orig_data/reduced_clean/",
-):
-
-    if not os.path.exists(fig_folder + "sample/"):
-        os.makedirs(fig_folder + "sample/")
-
-    if not os.path.exists(csv_folder + "sample/"):
-        os.makedirs(csv_folder + "sample/")
-
-    pngs = [row + ".png" for i, row in df.loc[index, "index"].items()]
-    for png in pngs:
-        if os.path.exists(fig_folder + png):
-            os.replace(fig_folder + png, fig_folder + "sample/" + png)
-
-    csvs = [row + "_1-2.csv" for i, row in df.loc[index, "index"].items()]
-
-    for csv in csvs:
-        # print(csv_folder + csv)
-        if os.path.exists(csv_folder + csv):
-            # print('inside')
-            os.replace(csv_folder + csv, csv_folder + "sample/" + csv)
+def remove_outlier(df, dims=[0.05, 0.95]):
+    low = dims[0]
+    high = dims[1]
+    quant_df = df.quantile([low, high])
+    # print(quant_df)
+    for name in list(df.columns):
+        if name in ["x", "y"]:
+            df = df[
+                (df[name] > quant_df.loc[low, name])
+                & (df[name] < quant_df.loc[high, name])
+            ]
+        # print(len(df))
+    return df

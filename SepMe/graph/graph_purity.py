@@ -1,12 +1,8 @@
-import pickle
-
 import numpy as np
 import networkx as nx
 import math
 from scipy import stats
-import random
-import seaborn as sns
-from SepMe.utils.graph_neighbourhoods import add_node_attr, attr_difference
+from SepMe.graph import add_node_attr
 
 
 def get_vote(neighbours, pessimism=True, target_class=1):

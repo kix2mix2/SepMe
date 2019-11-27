@@ -8,13 +8,10 @@ import pandas as pd
 import yaml
 from flatten_dict import flatten
 from SepMe import logger
-from SepMe.utils.graph_utils import calculate_graphs, calculate_purities
+from SepMe.graph import calculate_graphs, calculate_purities
 from SepMe.utils.workflow_utils import underscore_reducer, timeit
 
 import psutil
-import pickle
-
-from SepMe.utils.logger import get_logger
 
 
 @timeit

@@ -1,18 +1,13 @@
-experiment_name: 'test'
+experiment_name: 'test_1'
 data_path: 'data/orig_data/human_reduced_results.csv'
-folder_path: 'data/orig_data/input_data/reduced_clean/'
+folder_path: 'data/orig_data/input_data/enhanced_dim_data/'
 results_path: 'data/orig_data/graph_results/res_'
+dict_path: 'data/orig_data/graph_results/res_dict_'
 graph_path: 'data/orig_data/graphs/'
 graph_types:
   del:
-#  mst:
-#  knn: [1]
-#  kncg: [2]
-#  gong: [0.35]
-#  rng:
-#  bt: [0.005, 0.02, 0.05]
-#  as: [0.01]
-#  cbsg: [0.2]
+  knn: [2, 4, 5]
+#  cbsg: [2]
 purities:
   type: ['ltcc', 'cp', 'ce', 'mv', 'mcec']
 
