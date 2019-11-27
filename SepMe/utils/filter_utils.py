@@ -212,7 +212,10 @@ def create_sample_from_index(
         if os.path.exists(fig_folder + png):
             os.replace(fig_folder + png, fig_folder + "sample/" + png)
 
-    csvs = [row + ".csv" for i, row in df.loc[index, "index"].items()]
+    csvs = [row + "_1-2.csv" for i, row in df.loc[index, "index"].items()]
+
     for csv in csvs:
+        # print(csv_folder + csv)
         if os.path.exists(csv_folder + csv):
+            # print('inside')
             os.replace(csv_folder + csv, csv_folder + "sample/" + csv)

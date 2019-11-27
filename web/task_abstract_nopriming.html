@@ -31,7 +31,6 @@
 <crowd-form answer-format="flatten-objects">
 
     <short-instructions>
-        <h5>Steps</h5>
         <p> 1. For each slider select the most appropriate answer:</p><hr>
         <ul>
             <li>If a group is <span style="font-weight: bold">unseparable</span> from the rest , please drag the slider towards the left (towards 0%)
@@ -48,20 +47,18 @@
         <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/all.png' style="max-width: 80%">
 
     </short-instructions>
-    <full-instructions header="Are points of different groups separable from the others?">
+    <full-instructions header="Are points of differently colored groups separable from the others?">
         <br class="row">
             <h5>Detailed Instructions</h5>
-            <p> 1. In the following HIT, you are shown an image of a scatterplot containing multiple groups of points,
+            <p> 1. In the following task, you are shown an image of a scatterplot containing multiple groups of points,
                 distinguished from each other by color.</p>
             <p> 2. The task requires you to inspect the plot and decide for each individual group of points how
-                separable
-                they are from the remainder. </p>
-            <p> 3. In order to decide you must use the slider of the right side of the page. For each group of points
-                there
-                is a separate slider valued from 0% to 100%.</p>
+                separable they are from the remainder. </p>
+            <p> 3. In order to decide you must use the slider on the right side of the page. For each group of points
+                there is a separate slider valued from 0% to 100%.</p>
             <ul>
-                <li>If a group is unseparable from the rest, please drag the slider towards the left (towards 0%)</li>
-                <li>Else if a group is well separated from the rest, please drar the slider towards the right (towards
+                <li>If a group is non-separable from the rest, please drag the slider towards the left (towards 0%)</li>
+                <li>Else if a group is well separated from the rest, please drag the slider towards the right (towards
                     100%)
                 </li>
             </ul>
@@ -206,7 +203,7 @@
                                 </h5>
                             </div>
                             <div class='col-9'>
-                                <crowd-slider name="test_mixed_1" max=100 min=0 step=1 value=65 required=True pin=True
+                                <crowd-slider name="test_mixed_1" max=100 min=0 step=1 value=35 required=True pin=True
                                               style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'>
                                 </crowd-slider>
                             </div>
@@ -218,7 +215,7 @@
                                 </h5>
                             </div>
                             <div class='col-9'>
-                                <crowd-slider name="test_mixed_2" max=100 min=0 step=1 value=70 required=True pin=True
+                                <crowd-slider name="test_mixed_2" max=100 min=0 step=1 value=10 required=True pin=True
                                               style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'>
 
                                 </crowd-slider>
@@ -231,7 +228,7 @@
                                 </h5>
                             </div>
                             <div class='col-9'>
-                                <crowd-slider name="test_mixed_3" max=100 min=0 step=1 value=55 required=True pin=True
+                                <crowd-slider name="test_mixed_3" max=100 min=0 step=1 value=65 required=True pin=True
                                               style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'>
 
                                 </crowd-slider>
@@ -259,6 +256,13 @@
 
 
                 </div>
+                <hr>
+                <div class="row my-auto" style="  display: flex;
+                                                  align-items: center;
+                                                  justify-content: center;">
+                    <crowd-button form-action="submit" variant="primary">Submit</crowd-button>
+
+                </div>
 
 
             </div>
@@ -281,7 +285,11 @@
         '#56b4e9']
 
 
-    for (var i = 1; i <= 4; i++) {
+    number = ${i};
+    if (number > 4) {
+        number = 4
+    }
+    for (var i = 1; i <= number; i++) {
         $('#target').append("<div class='row'>" +
             "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i - 1] + "; color:white; text-align: left'>Class " + i + ": </span> </h5></div>" +
             "<div class='col-9'><crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=50 required=True pin=True " +

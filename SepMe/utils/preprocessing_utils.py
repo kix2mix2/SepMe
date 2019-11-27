@@ -1,11 +1,14 @@
+import ray
 import os
+
 from operator import sub
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import ray
+
 import seaborn as sns
+
 import umap
 from descartes import PolygonPatch
 from shapely.geometry import Point
@@ -470,6 +473,10 @@ def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
     # print(method)
     if method in {"PCA", "RobPCA"}:
         name = nn + "_data.csv"
+
+    elif method in ["tSNE"]:
+        name = nn + "_2.csv"
+        name = name.replace("tSNE", "TSNE")
     else:
         name = nn + "_2.csv"
 
@@ -482,9 +489,9 @@ def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
         file_name = save_folder + nn + "_" + dim_x + "-" + dim_y + ".csv"
 
         if os.path.exists(fig_folder + names[i] + ".png") is True:
-
-            print("File was already processed. Skipping: {}".format(file_name))
-            print("Processed file {}/{}. Name: {}".format(i, len(names), nn))
+            print("---")
+            # print("File was already processed. Skipping: {}".format(file_name))
+            # print("Processed file {}/{}. Name: {}".format(i, len(names), nn))
             return
 
         ddf, circles = preprocess_df(

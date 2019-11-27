@@ -16,6 +16,10 @@ condaenv*
 *.csv
 *.pdf
 *.png
+*.log
+
+**/*.log
+
 
 **/.pytest_cache
 
