@@ -286,18 +286,21 @@
 
 
     number = ${i};
+    class_set = ${class_set};
     if (number > 4) {
         number = 4
     }
     for (var i = 1; i <= number; i++) {
-        $('#target').append("<div class='row'>" +
-            "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i - 1] + "; color:white; text-align: left'>Class " + i + ": </span> </h5></div>" +
-            "<div class='col-9'><crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=50 required=True pin=True " +
-            "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[i - 1] + "); " +
-            "--paper-slider-knob-color:  " + colors[i - 1] + ";" +
-            "--paper-slider-pin-color: " + colors[i - 1] + ";'" +
-            "></crowd-slider>" +
-            "</div></div></br>")
+        ii = class_set * 4 + i;
+        if (ii<=10) {
+            $('#target').append("<div class='row'>" +
+                "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i - 1] + "; color:white; text-align: left'>Class " + i + ": </span> </h5></div>" +
+                "<div class='col-9'><crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=50 required=True pin=True " +
+                "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[i - 1] + "); " +
+                "--paper-slider-knob-color:  " + colors[i - 1] + ";" +
+                "--paper-slider-pin-color: " + colors[i - 1] + ";'" +
+                "></crowd-slider>" +
+                "</div></div></br>") }
 
     }
 

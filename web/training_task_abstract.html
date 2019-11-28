@@ -59,6 +59,7 @@
                     </li>
                     <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/sep_slider.png' style="max-width: 15%"></br>
                 </ul>
+
                 <hr>
                 <h5>2. Examples</h5> </br>
                 <h6>2.1 Highly Separable Scenario</h6>
@@ -243,8 +244,8 @@
                     <div class="row my-auto" style="  display: flex;
                                                       align-items: center;
                                                       justify-content: center;">
-                        <crowd-button form-action="submit" variant="primary">Submit</crowd-button>
-
+                        <crowd-button form-action="submit" variant="primary">Submit</crowd-button> <br> <br>
+                        <p style="color: gray">(*in order to submit you have to check the box at the end of the instructions page.)</p>
                     </div>
                     </div>
                 </div>
@@ -272,19 +273,21 @@
         '#56b4e9'];
 
     number = ${i};
+    class_set = ${class_set};
     if (number > 4) {
         number = 4
     }
     for (var i = 1; i <= number; i++) {
-
-        $('#target').append("<div class='row'>" +
-            "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i - 1] + "; color:white; text-align: left'>Class " + i + ": </span> </h5></div>" +
-            "<div class='col-9'><crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=0 required=True pin=True " +
-            "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[i - 1] + "); " +
-            "--paper-slider-knob-color:  " + colors[i - 1] + ";" +
-            "--paper-slider-pin-color: " + colors[i - 1] + ";'" +
-            "></crowd-slider>" +
-            "</div></div></br>")
+        ii = class_set * 4 + i;
+        if (ii<=10) {
+            $('#target').append("<div class='row'>" +
+                "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[ii - 1] + "; color:white; text-align: left'>Class " + ii + ": </span> </h5></div>" +
+                "<div class='col-9'><crowd-slider id='class_" + ii + "' name='Separability" + ii + "' max=100 min=0 step=1 value=50 required=True pin=True " +
+                "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[ii - 1] + "); " +
+                "--paper-slider-knob-color:  " + colors[ii - 1] + ";" +
+                "--paper-slider-pin-color: " + colors[ii - 1] + ";'" +
+                "></crowd-slider>" +
+                "</div></div></br>") }
 
     }
 
