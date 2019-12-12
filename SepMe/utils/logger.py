@@ -1,5 +1,6 @@
 import logging
-import mlflow
+
+# import mlflow
 
 
 class MLFlowLogger(logging.getLoggerClass()):
@@ -8,29 +9,29 @@ class MLFlowLogger(logging.getLoggerClass()):
     """
 
     def log_param(self, key, value, level=logging.INFO):
-        mlflow.log_param(key, value)
+        # mlflow.log_param(key, value)
         self.log(level, f"Param logged: {key}={value}")
 
     def log_metric(self, key, value, level=logging.INFO):
-        mlflow.log_metric(key, value)
+        # mlflow.log_metric(key, value)
         self.log(level, f"Metric logged: {key}={value}")
 
     def log_artifact(self, local_path, artifact_path=None, level=logging.INFO):
-        mlflow.log_artifact(local_path, artifact_path)
+        # mlflow.log_artifact(local_path, artifact_path)
         self.log(
             level,
             f"Artifact logged: {local_path} to {artifact_path or 'default location'}",
         )
 
     def log_artifacts(self, local_dir, artifact_path=None, level=logging.INFO):
-        mlflow.log_artifacts(local_dir, artifact_path)
+        # mlflow.log_artifacts(local_dir, artifact_path)
         self.log(
             level,
             f"Artifacts logged: {local_dir} to {artifact_path or 'default location'}",
         )
 
     def set_tag(self, key, value, level=logging.INFO):
-        mlflow.set_tag(key, value)
+        # mlflow.set_tag(key, value)
         self.log(level, f"Tag set: {key}: {value}")
 
     # TODO(cristina): Add log_metrics & log_artifacts once you figure out if you need them

@@ -3,7 +3,6 @@ from SepMe.utils.workflow_utils import timeit
 from .graph_neighbourhoods import *
 from .graph_purity import *
 from SepMe import logger
-import mlflow
 import os
 import pickle
 

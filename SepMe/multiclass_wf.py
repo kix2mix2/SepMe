@@ -2,7 +2,8 @@ import ray
 import os
 import time
 import click
-import mlflow
+
+# import mlflow
 import yaml
 from SepMe import logger
 from SepMe.utils.uberprocessing import process_dataset, save_progress
@@ -28,7 +29,7 @@ def workflow(config_path, save):
 
     logger.info(config)
     logger.info("Number of processors: " + str(psutil.cpu_count() - 2))
-    mlflow.set_experiment(config["experiment_name"])
+    # mlflow.set_experiment(config["experiment_name"])
 
     # make a directory to save graphs
     graph_dir = config["graph_path"] + config["experiment_name"] + "/"

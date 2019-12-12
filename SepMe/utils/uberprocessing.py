@@ -1,6 +1,6 @@
 import json
 
-import mlflow
+# import mlflow
 import pandas as pd
 import ray
 from flatten_dict import flatten
@@ -30,27 +30,27 @@ def process_dataset(file, config, i, lf, dict_dir, save=False):
 
     # process file
     if df is not None:
-        with mlflow.start_run(run_name=code_name):
-            print("Runtime: " + code_name)
-            print("df_size", len(df))
+        # with mlflow.start_run(run_name=code_name):
+        print("Runtime: " + code_name)
+        print("df_size", len(df))
 
-            data_dict[code_name] = {}
+        data_dict[code_name] = {}
 
-            graph_path = graph_dir + code_name + "_graphs.pickle"
-            nx_dict = calculate_graphs(graph_path, df, config["graph_types"])
+        graph_path = graph_dir + code_name + "_graphs.pickle"
+        nx_dict = calculate_graphs(graph_path, df, config["graph_types"])
 
-            # logger.info("Calculating purities..")
-            for graph in nx_dict.keys():
-                data_dict[code_name][graph] = {}
-                if type(nx_dict[graph]) is dict:
-                    for subgraph in nx_dict[graph].keys():
-                        data_dict[code_name][graph][subgraph] = calculate_purities(
-                            df, nx_dict[graph][subgraph], config["purities"],
-                        )
-                else:
-                    data_dict[code_name][graph] = calculate_purities(
-                        df, nx_dict[graph], config["purities"]
+        # logger.info("Calculating purities..")
+        for graph in nx_dict.keys():
+            data_dict[code_name][graph] = {}
+            if type(nx_dict[graph]) is dict:
+                for subgraph in nx_dict[graph].keys():
+                    data_dict[code_name][graph][subgraph] = calculate_purities(
+                        df, nx_dict[graph][subgraph], config["purities"],
                     )
+            else:
+                data_dict[code_name][graph] = calculate_purities(
+                    df, nx_dict[graph], config["purities"]
+                )
 
     if save:
         with open(dict_dir + file.split(".csv")[0] + ".json", "w") as fp:

@@ -76,7 +76,9 @@ def create_sample_from_index(
 
 
 def create_s3_batchfile(
-    save_folder=" ../../data/mturk_samples/sample_test/", bucket_name="scatterplots"
+    save_folder=" ../../data/mturk_samples/sample_test/",
+    bucket_name="scatterplots",
+    name="index.csv",
 ):
     files = os.listdir(save_folder + "data/")
 
@@ -125,9 +127,11 @@ def create_s3_batchfile(
                         ]
                     )
 
-                # s3.meta.client.upload_file(
-                #     Filename = save_folder + 'figures/' + png, Bucket = bucket_name,
-                #     Key = s3_folder + '/' + png)
+                s3.meta.client.upload_file(
+                    Filename=save_folder + "figures/" + png,
+                    Bucket=bucket_name,
+                    Key=s3_folder + "/" + png,
+                )
 
             except Exception as e:
                 print("There was an error processing file {}".format(file))
@@ -144,4 +148,4 @@ def create_s3_batchfile(
         }
     )
 
-    ddf.loc[ddf["class_set"] < 1, :].to_csv(save_folder + "index.csv", index=False)
+    ddf.loc[ddf.class_set >= 1, :].to_csv(save_folder + name, index=False)

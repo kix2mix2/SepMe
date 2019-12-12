@@ -5,7 +5,7 @@ setup(
     version="1.2",
     packages=find_packages(),
     install_requires=[
-        "mlflow",
+        # "mlflow",
         "sklearn",
         "scipy",
         "pandas",

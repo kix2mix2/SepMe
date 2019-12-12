@@ -77,7 +77,7 @@ def append_test_data(batch_file, check_file):
     df = dfh1.merge(df, left_on="fileName", right_on="HITname")
 
     drop = [
-        "HITTypeId",
+        # "HITTypeId",
         "Title",
         "Description",
         "Keywords",
@@ -87,10 +87,9 @@ def append_test_data(batch_file, check_file):
         "RequesterAnnotation",
         "AssignmentDurationInSeconds",
         "AutoApprovalDelayInSeconds",
-        "Expiration",
+        #       "Expiration",
         "NumberOfSimilarHITs",
         "LifetimeInSeconds",
-        "AssignmentId",
         "AssignmentStatus",
         "AcceptTime",
         "SubmitTime",
@@ -99,9 +98,26 @@ def append_test_data(batch_file, check_file):
         "RejectionTime",
         "RequesterFeedback",
         "LifetimeApprovalRate",
-        "HITId",
     ]
+
     df.drop(drop, axis=1, inplace=True)
+
+    others = [
+        "Answer.consent.on",
+        "Answer.test_mixed_1",
+        "Answer.test_mixed_2",
+        "Answer.test_mixed_3",
+        "Answer.test_nonsep_1",
+        "Answer.test_nonsep_2",
+        "Answer.test_nonsep_3",
+        "Answer.test_sep_1",
+        "Answer.test_sep_2",
+        "Answer.test_sep_3",
+    ]
+    try:
+        df.drop(others, axis=1, inplace=True)
+    except KeyError:
+        pass
 
     return df
 
@@ -202,7 +218,7 @@ def get_plots(df, df_agg, figsize=(10, 20), alpha=0.6, col="white", con_col="#cc
                 markersize=25,
             )
 
-    return axes
+    return fig, axes
 
 
 def plot_extra(axes, df, df_agg, color="#cc78bc"):
@@ -243,8 +259,10 @@ def get_counts(df, p_col, i, total):
     return df_agg1
 
 
-def self_clean(df, majority=0.6, total=20, neg=40, pos=60):
+def self_clean(df, majority=0.6, total=20, neg=40, pos=60, min_passes=2):
     orig = len(df)
+    # print(df.shape)
+
     for i in range(1, 5):
         col = "sep{}".format(i)
         ppos = "ppos{}".format(i)
@@ -287,10 +305,10 @@ def self_clean(df, majority=0.6, total=20, neg=40, pos=60):
 
         df["pass{}".format(i)] = 1
         df.loc[
-            ((df[col] > pos) & (df[pneg] > majority))
-            | ((df[col] < neg) & (df[ppos] > majority)),
+            (((df[col] > pos) | (df[col] == 50)) & (df[pneg] > majority))
+            | (((df[col] < neg) | (df[col] == 50)) & (df[ppos] > majority)),
             "pass{}".format(i),
-        ] = 0  # if row is positive but the majority is negative, discar
+        ] = 0  # if row is positive but the majority is negative, discard
 
         # print(df.loc[:,['HITname', col, ppos, pneg,'pass{}'.format(i)] ])
         # print('=======')
@@ -300,10 +318,16 @@ def self_clean(df, majority=0.6, total=20, neg=40, pos=60):
         df["passes"] += df["pass{}".format(i)]
 
     print(
-        "Retain rate for minimum {} passes is: {}% \n".format(
-            2, (len(df.loc[df["passes"] >= 2]) / orig) * 100
+        "Retain rate for minimum {} passes is: {}% ".format(
+            min_passes, (len(df.loc[df["passes"] >= min_passes, :]) / orig) * 100
         )
     )
+
+    df.loc[
+        (df["passes"] < min_passes), "Reject"
+    ] = "At least half of your answers are the opposite of what they should be"
+    df.loc[(df["passes"] >= min_passes), "Approve"] = "X"
+
     return df
 
 
@@ -334,10 +358,10 @@ def workingtime_stats(df):
     print("-------")
 
 
-def get_worktime_dist(df, bins=8, title=None):
-    fig = plt.figure(figsize=(15, 5))
+def get_worktime_dist(df, bins=8, title=None, ax=None):
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(20, 10))
 
-    ax = fig.add_subplot(111)
     sns.distplot(df.WorkTimeInSeconds, ax=ax, bins=bins, axlabel=title)
 
     ax.xaxis.set_major_locator(ticker.MultipleLocator(15))
@@ -359,7 +383,7 @@ def get_worktime_dist(df, bins=8, title=None):
         )
 
 
-def get_slice_stats(df, mmin=0, mmax=1000, bins=8):
+def get_slice_stats(df, mmin=0, mmax=1000, bins=8, ax=None):
     print("Stats for workers with HITs between {} and {}:".format(mmin, mmax))
     workers = (
         df.groupby(["WorkerId"])
@@ -375,6 +399,7 @@ def get_slice_stats(df, mmin=0, mmax=1000, bins=8):
         df.loc[df["WorkerId"].isin(worker_ids)],
         bins=bins,
         title="workers between {} and {}:".format(mmin, mmax),
+        ax=ax,
     )
 
     print("===================")

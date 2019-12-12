@@ -90,16 +90,32 @@ def preprocess_df(df, dims, size=0.5, occlusion=0.1, save=None, sort=True):
     return ddf, circles
 
 
-def plot_colored_circles(ax, df, circles, class_name="class"):
+def plot_colored_circles(ax, df, circles, class_name="class", specific_colors=-1):
+
     for i, row in df.iterrows():
-        ax.add_patch(
-            PolygonPatch(
-                circles[i],
-                fc=sns.color_palette("colorblind")[int(row[class_name])],
-                ec="none",
-                alpha=1,
+        if specific_colors == -1:
+            ax.add_patch(
+                PolygonPatch(
+                    circles[i],
+                    fc=sns.color_palette("colorblind")[int(row[class_name])],
+                    ec="none",
+                    alpha=1,
+                )
             )
-        )
+        else:
+            if int(row[class_name]) == 0:
+                ax.add_patch(
+                    PolygonPatch(circles[i], fc="lightgray", ec="none", alpha=1,)
+                )
+            else:
+                ax.add_patch(
+                    PolygonPatch(
+                        circles[i],
+                        fc=sns.color_palette("colorblind")[int(specific_colors)],
+                        ec="none",
+                        alpha=1,
+                    )
+                )
 
     ax.autoscale()
     ax.set_aspect("equal", "datalim")
@@ -157,7 +173,7 @@ def get_dimred_data(df, input_folder, save_folder, fig_folder):
     return
 
 
-@ray.remote
+# @ray.remote
 def add_dimreds(orig_dir, save_dir, file):
     if os.path.exists(save_dir + file):
         # print('File was already processed. Skipping: {}'.format(save_dir + file))
@@ -229,7 +245,7 @@ def add_dimreds(orig_dir, save_dir, file):
     return df
 
 
-@ray.remote
+# @ray.remote
 def save_and_plot_all_dimensions(file, orig_dir, save_dir, fig_dir, class_cols):
     df = pd.read_csv(orig_dir + file)
 
@@ -282,7 +298,7 @@ def save_and_plot_all_dimensions(file, orig_dir, save_dir, fig_dir, class_cols):
                 print("")
 
 
-@ray.remote
+# @ray.remote
 def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
 
     method = nn.split("_")[-1]
