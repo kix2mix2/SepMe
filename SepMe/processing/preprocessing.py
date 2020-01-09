@@ -2,10 +2,12 @@ import ray
 import os
 import numpy as np
 import pandas as pd
+import umap
 from sklearn.preprocessing import minmax_scale, LabelEncoder
 from sklearn.decomposition import PCA
 from sklearn.manifold import Isomap, TSNE, LocallyLinearEmbedding, MDS
-import umap
+
+# import umap
 import seaborn as sns
 from descartes import PolygonPatch
 import matplotlib.pyplot as plt
@@ -173,7 +175,7 @@ def get_dimred_data(df, input_folder, save_folder, fig_folder):
     return
 
 
-# @ray.remote
+@ray.remote
 def add_dimreds(orig_dir, save_dir, file):
     if os.path.exists(save_dir + file):
         # print('File was already processed. Skipping: {}'.format(save_dir + file))
@@ -245,7 +247,7 @@ def add_dimreds(orig_dir, save_dir, file):
     return df
 
 
-# @ray.remote
+@ray.remote
 def save_and_plot_all_dimensions(file, orig_dir, save_dir, fig_dir, class_cols):
     df = pd.read_csv(orig_dir + file)
 
@@ -298,7 +300,7 @@ def save_and_plot_all_dimensions(file, orig_dir, save_dir, fig_dir, class_cols):
                 print("")
 
 
-# @ray.remote
+@ray.remote
 def process_one_dimred(i, names, nn, input_folder, df, save_folder, fig_folder):
 
     method = nn.split("_")[-1]

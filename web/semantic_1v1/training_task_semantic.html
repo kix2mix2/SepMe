@@ -1,0 +1,318 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+<script>
+    colors = ['#0173b2',
+        '#de8f05',
+        '#029e73',
+        '#d55e00',
+        '#fbafe4',
+        '#949494',
+        '#ece133',
+        '#56b4e9',
+        '#cc78bc',
+        '#ca9161'];
+
+    nations = ['USA: ',
+        'India: ',
+        'Italy: ',
+        'Canada: ',
+        'Peru: ',
+        'China: ',
+        'UK: ',
+        'Spain: ',
+        'Iran: ',
+        'Romania: '
+    ]
+</script>
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+
+
+<crowd-form answer-format="flatten-objects">
+
+    <div class="container col-lg-12 my-auto" style="max-width: 80%">
+        <div class="'row">
+            <h1> Differences in culture across countries</h1> <hr>
+
+            <h5 style="color:rgba(0,99,0,0.78)">Please only accept this HIT if you are willing to participate in a 15 minutes follow-up survey.</h5> <br>
+            <p>In a previous survey, we have asked a series of questions to participants from different countries.</p>
+            <p>We want to know if there are any noticeable differences between participants from different countries.</p>
+
+            <br><br>
+        </div>
+        <crowd-tabs>
+            <crowd-tab header="Instructions">
+                <h5>1. Instructions</h5> </br>
+                <p> 1.1 In the following task, you will be shown an image of a scatterplot containing multiple groups of
+                    points, distinguished from each other by color.</p>  </br>
+                <ul>
+                    <li>Each color represents a nation. e.g. Red = Canada</li>
+                    <li>We have removed what the x and y axis information is, in order to remove any potential bias from your answer.</li>
+                </ul>
+                <p> 1.2 The task requires you to inspect the plot and decide for each nation how different it is from the rest. </p>
+                <p> 1.3 In order to decide you must use the slider on the right side of the page: </p>  </br>
+                <ul>
+                    <li>If a country is very similar to the rest, please drag the slider towards the left (towards
+                        0%)
+                    </li>
+                    <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/us_sim.png' style="max-width: 15%"></br>
+                    <li>Else if a country is very different from the rest, please drag the slider towards the right
+                        (towards
+                        100%)
+                    </li>
+                    <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/us_diff.png' style="max-width: 15%"></br>
+                </ul>
+
+                <hr>
+                <h5>2. Examples</h5> </br>
+                <h6>2.1 Where countries are different</h6>
+                <div class="row">
+                    <div class="col-4"><img src="https://scatterplots.s3.eu-central-1.amazonaws.com/sep_multi.png"
+                                            style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                    <div class="col-8">
+                        <br class='row'>
+                         <p>Example: </p>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>USA: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_sep_1" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'
+                                              value=99>
+
+                                </crowd-slider>
+                            </div>
+
+                        </div>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>India: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_sep_2" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'
+                                              value=82>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Italy: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_sep_3" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'
+                                              value=80>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <h6>2.2 Where countries are similar</h6>
+                <div class="row">
+                    <div class="col-4"><img
+                            src="https://scatterplots.s3.eu-central-1.amazonaws.com/nonsep_multi.png"
+                            style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                    <div class="col-8">
+                        <br class='row'><p>Example: </p>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>USA: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_nonsep_1" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'
+                                              value=1>
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>India: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_nonsep_2" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'
+                                              value=1>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Italy: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_nonsep_3" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'
+                                              value=1>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h6>2.3 Middle Ground Scenario</h6>
+                <div class="row">
+                    <div class="col-4"><img src="https://scatterplots.s3.eu-central-1.amazonaws.com/mixed.png"
+                                            style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                    <div class="col-8">
+                        <br class='row'><p>Example: </p>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>USA: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_mixed_1" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'
+                                              value=35>
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>India: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_mixed_2" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'
+                                              value=15>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Italy: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider max=100 min=0 name="test_mixed_3" pin=True required=True step=1
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'
+                                              value=55>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="'row">
+                    <h5>3. Confirmation</h5>
+                    <crowd-checkbox name="consent" required=True> I have read and understood the requirements.
+                    </crowd-checkbox>
+                </div>
+            </crowd-tab>
+            <crowd-tab header="Task">
+
+                <div class="row">
+                    <div class="col-8">
+                        <img src='${image_url}'
+                             style="max-height: 100%; max-width: 100%; padding: 10px"/>
+                    </div>
+                    <div class="col-4">
+                        <h4> How different are the countries in this list from the rest?</h4>
+                        <div class="row">
+                            <div class="col-3" style="color: gray; font-size: 8; text-align: right"> </div>
+                            <div class="col-9" style="color: gray; font-size: 8; text-align: left">
+                                <div class="row">
+                                    <div class="col-5" style="color: gray; font-size: 8; text-align: left">Very Similar</div>
+                                    <div class="col-2" style="color: gray; font-size: 8; text-align: left"></div>
+                                    <div class="col-5" style="color: gray; font-size: 8; text-align: left">Very Different</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div id="target" style="padding: 5px"></div>
+
+                        <hr>
+                    <div class="row my-auto" style="  display: flex;
+                                                      align-items: center;
+                                                      justify-content: center;">
+                        <crowd-button form-action="submit" variant="primary">Submit</crowd-button> <br> <br>
+                        <p style="color: gray"><br>(Note 1: In order to submit you have to check the box at the end of the instructions page.)</p>
+                        <p style="color: gray"><br>(Note 2: If the sliders are left at 50% value, the HIT will be rejected.)</p>
+                    </div>
+                    </div>
+                </div>
+
+            </crowd-tab>
+        </crowd-tabs>
+
+
+    </div>
+
+
+</crowd-form>
+
+<script>
+
+
+
+
+    i = ${i};
+
+    $('#target').append("<div class='row'>" +
+                "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i] + "; color:white; text-align: left'>"+nations[i]+ "</span> </h5></div>" +
+                "<div class='col-9'>" +
+                "<crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=50 required=True pin=True " +
+                "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[i] + "); " +
+                "--paper-slider-knob-color:  " + colors[i] + ";" +
+                "--paper-slider-pin-color: " + colors[i] + ";'" +
+                "></crowd-slider>" +
+                "</div></div>" +
+                "</br>")
+
+
+    // $( "#cris" ).empty()
+
+
+
+</script>

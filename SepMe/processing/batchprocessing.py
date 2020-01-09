@@ -54,9 +54,74 @@ def aggregate_batch(df):
 
 def append_test_data(batch_file, check_file):
     df = pd.read_csv(batch_file)
-    df["HITname"] = [
-        row.split("/")[-1].split(".png")[0] for i, row in df["Input.image_url"].items()
+
+    others = [
+        "Answer.consent.on",
+        "Answer.test_mixed_1",
+        "Answer.test_mixed_2",
+        "Answer.test_mixed_3",
+        "Answer.test_nonsep_1",
+        "Answer.test_nonsep_2",
+        "Answer.test_nonsep_3",
+        "Answer.test_sep_1",
+        "Answer.test_sep_2",
+        "Answer.test_sep_3",
     ]
+    try:
+        df.drop(others, axis=1, inplace=True)
+    except KeyError:
+        pass
+
+    if "Answer.Separability0" in df.columns:
+        df.columns = [
+            "HITId",
+            "HITTypeId",
+            "Title",
+            "Description",
+            "Keywords",
+            "Reward",
+            "CreationTime",
+            "MaxAssignments",
+            "RequesterAnnotation",
+            "AssignmentDurationInSeconds",
+            "AutoApprovalDelayInSeconds",
+            "Expiration",
+            "NumberOfSimilarHITs",
+            "LifetimeInSeconds",
+            "AssignmentId",
+            "WorkerId",
+            "AssignmentStatus",
+            "AcceptTime",
+            "SubmitTime",
+            "AutoApprovalTime",
+            "ApprovalTime",
+            "RejectionTime",
+            "RequesterFeedback",
+            "WorkTimeInSeconds",
+            "LifetimeApprovalRate",
+            "Last30DaysApprovalRate",
+            "Last7DaysApprovalRate",
+            "Input.image_url",
+            "Input.i",
+            "Answer.Separability1",
+            "Answer.Separability2",
+            "Answer.Separability3",
+            "Answer.Separability4",
+            "Approve",
+            "Reject",
+        ]
+
+        df["HITname"] = [
+            "_".join(row.split("/")[-1].split(".png")[0].split("_")[:-2])
+            for i, row in df["Input.image_url"].items()
+        ]
+
+    else:
+        df["HITname"] = [
+            row.split("/")[-1].split(".png")[0]
+            for i, row in df["Input.image_url"].items()
+        ]
+
     df.columns = [
         a.replace("Answer.Separability", "sep")
         if a.startswith("Answer.Separability")
@@ -72,6 +137,7 @@ def append_test_data(batch_file, check_file):
     dfh1 = dfh.pivot(
         index="fileName", columns="class", values=["mp", "ap"]
     ).reset_index()
+
     dfh1.columns = ["%s%s" % (a, ".%s" % b if b else "") for a, b in dfh1.columns]
 
     df = dfh1.merge(df, left_on="fileName", right_on="HITname")
@@ -81,8 +147,9 @@ def append_test_data(batch_file, check_file):
         "Title",
         "Description",
         "Keywords",
-        "Reward",
+        # "Reward",
         "CreationTime",
+        # "Input.file_name",
         "MaxAssignments",
         "RequesterAnnotation",
         "AssignmentDurationInSeconds",
@@ -102,20 +169,13 @@ def append_test_data(batch_file, check_file):
 
     df.drop(drop, axis=1, inplace=True)
 
-    others = [
-        "Answer.consent.on",
-        "Answer.test_mixed_1",
-        "Answer.test_mixed_2",
-        "Answer.test_mixed_3",
-        "Answer.test_nonsep_1",
-        "Answer.test_nonsep_2",
-        "Answer.test_nonsep_3",
-        "Answer.test_sep_1",
-        "Answer.test_sep_2",
-        "Answer.test_sep_3",
-    ]
     try:
-        df.drop(others, axis=1, inplace=True)
+        df.drop(["Input.class_set"], axis=1, inplace=True)
+    except KeyError:
+        pass
+
+    try:
+        df.drop(["Input.counts"], axis=1, inplace=True)
     except KeyError:
         pass
 
@@ -251,17 +311,52 @@ def plot_extra(axes, df, df_agg, color="#cc78bc"):
             )
 
 
-def get_counts(df, p_col, i, total):
-    df_agg1 = df.groupby(["HITname"]).agg({"sep{}".format(i): {"count"}}).reset_index()
-    df_agg1.columns = ["%s%s" % (a, ".%s" % b if b else "") for a, b in df_agg1.columns]
-    df_agg1[p_col] = df_agg1["sep{}.count".format(i)] / total
-    df_agg1.drop(["sep{}.count".format(i)], axis=1, inplace=True)
+def get_counts(df, p_col, i, df_agg=None):
+
+    # print(list(df_agg1.columns))
+    if df_agg is None:
+
+        df_agg1 = (
+            df.groupby(["HITname"])
+            .agg(
+                {
+                    "sep1": {"count"},
+                    "sep2": {"count"},
+                    "sep3": {"count"},
+                    "sep4": {"count"},
+                }
+            )
+            .reset_index()
+        )
+        df_agg1.columns = [
+            "%s%s" % (a, ".%s" % b if b else "") for a, b in df_agg1.columns
+        ]
+        df_agg1[p_col] = df_agg1["sep1.count"]
+        df_agg1.drop(
+            ["sep1.count", "sep2.count", "sep3.count", "sep4.count"],
+            axis=1,
+            inplace=True,
+        )
+
+    else:
+        df_agg1 = (
+            df.groupby(["HITname"]).agg({"sep{}".format(i): {"count"}}).reset_index()
+        )
+        df_agg1.columns = [
+            "%s%s" % (a, ".%s" % b if b else "") for a, b in df_agg1.columns
+        ]
+        df_agg1 = df_agg1.merge(df_agg, on="HITname")
+        # print(df_agg1)
+        df_agg1[p_col] = df_agg1["sep{}.count".format(i)] / df_agg1["total_recordings"]
+        df_agg1.drop(["sep{}.count".format(i)], axis=1, inplace=True)
+
     return df_agg1
 
 
-def self_clean(df, majority=0.6, total=20, neg=40, pos=60, min_passes=2):
-    orig = len(df)
+def self_clean(df, majority=0.6, neg=40, pos=60, min_passes=2):
+
     # print(df.shape)
+    df_agg = get_counts(df, "total_recordings", 1)
 
     for i in range(1, 5):
         col = "sep{}".format(i)
@@ -273,10 +368,13 @@ def self_clean(df, majority=0.6, total=20, neg=40, pos=60, min_passes=2):
         df_neg = df.loc[df[col] < neg]  # get all rows where score{} is <negative thresh
         df_pos = df.loc[df[col] > pos]  # get all rows where score{} is >positive thresh
 
+        # print(list(df_agg.columns))
         if len(df_neg) > 0:
             df_agg_neg = get_counts(
-                df_neg, pneg, i, total
+                df_neg, pneg, i, df_agg
             )  # calculate proportion of negative
+            if i > 1:
+                df_agg_neg.drop(["total_recordings"], axis=1, inplace=True)
             # print(df_agg_neg)
             # print('----')
             df = df.merge(df_agg_neg, on="HITname", how="left")
@@ -287,8 +385,9 @@ def self_clean(df, majority=0.6, total=20, neg=40, pos=60, min_passes=2):
         if len(df_pos) > 0:
 
             df_agg_pos = get_counts(
-                df_pos, ppos, i, total
+                df_pos, ppos, i, df_agg
             )  # calculate proportion of positive
+            df_agg_pos.drop(["total_recordings"], axis=1, inplace=True)
             # print(df_agg_pos)
             # print('----')
 
@@ -317,15 +416,30 @@ def self_clean(df, majority=0.6, total=20, neg=40, pos=60, min_passes=2):
     for i in range(1, 5):
         df["passes"] += df["pass{}".format(i)]
 
+    orig = len(df.loc[df["total_recordings"] > 15, :])
+    if orig == 0:
+        print("Not enough data for self-cleaning")
+        print(df_agg.sort_values(["total_recordings"], ascending=False).head(3))
+        return df
+
     print(
         "Retain rate for minimum {} passes is: {}% ".format(
-            min_passes, (len(df.loc[df["passes"] >= min_passes, :]) / orig) * 100
+            min_passes,
+            (
+                len(
+                    df.loc[
+                        (df["passes"] >= min_passes) & (df["total_recordings"] > 15), :
+                    ]
+                )
+                / orig
+            )
+            * 100,
         )
     )
 
     df.loc[
         (df["passes"] < min_passes), "Reject"
-    ] = "At least half of your answers are the opposite of what they should be"
+    ] = "Your answers are the opposite of what the should be. You might have misused the slider or submitted randomly."
     df.loc[(df["passes"] >= min_passes), "Approve"] = "X"
 
     return df

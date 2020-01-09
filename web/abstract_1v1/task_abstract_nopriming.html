@@ -1,0 +1,308 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+<script>
+    colors = ['#0173b2',
+        '#de8f05',
+        '#029e73',
+        '#d55e00',
+        '#fbafe4',
+        '#949494',
+        '#ece133',
+        '#56b4e9',
+        '#cc78bc',
+        '#ca9161'];
+</script>
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+
+    <short-instructions>
+        <p> 1. For each slider select the most appropriate answer:</p><hr>
+        <ul>
+            <li>If a group is <span style="font-weight: bold">unseparable</span> from the rest , please drag the slider towards the left (towards 0%)
+
+
+            </li></ul>
+        <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/nonsep_slider.png' style="max-width: 80%"></br><hr>
+         <ul> <li>Else if a group is <span style="font-weight: bold">well separated</span> from the rest, please drar the slider towards the right (towards
+                100%)
+            </li>
+        </ul>
+        <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/sep_slider.png' style="max-width: 80%"></br><hr>
+        <p> 2. Please select an answer for every class in the image.</p>
+        <img src = 'https://scatterplots.s3.eu-central-1.amazonaws.com/all.png' style="max-width: 80%">
+
+    </short-instructions>
+    <full-instructions header="Are points of differently colored groups separable from the others?">
+        <br class="row">
+            <h5>Detailed Instructions</h5>
+            <p> 1. In the following task, you are shown an image of a scatterplot containing multiple groups of points,
+                distinguished from each other by color.</p>
+            <p> 2. The task requires you to inspect the plot and decide for each individual group of points how
+                separable they are from the remainder. </p>
+            <p> 3. In order to decide you must use the slider on the right side of the page. For each group of points
+                there is a separate slider valued from 0% to 100%.</p>
+            <ul>
+                <li>If a group is non-separable from the rest, please drag the slider towards the left (towards 0%)</li>
+                <li>Else if a group is well separated from the rest, please drag the slider towards the right (towards
+                    100%)
+                </li>
+            </ul>
+
+            <h5>Examples</h5> </br>
+            <h6>Highly Separable Scenario</h6>
+            <div class="row">
+                <div class="col-4"><img src="https://scatterplots.s3.eu-central-1.amazonaws.com/sep_multi.png"
+                                        style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                <div class="col-8">
+                    <div class="row">
+                        </br>
+                    </div>
+
+                    <div class='row'>
+                        <p> Please select separability for the following classes:</p>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>Class 1: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_sep_1" max=100 min=0 step=1 value=99 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>Class 2: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+
+
+                                <crowd-slider name="test_sep_2" max=100 min=0 step=1 value=82 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Class 3: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+
+
+                                <crowd-slider name="test_sep_3" max=100 min=0 step=1 value=80 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <h6>Non-Separable Scenario</h6>
+            <div class="row">
+                <div class="col-4"><img src="https://scatterplots.s3.eu-central-1.amazonaws.com/nonsep_multi.png"
+                                        style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                <div class="col-8">
+                    <div class="row">
+                        </br>
+                    </div>
+
+                    <div class='row'>
+                        <p> Please select separability for the following classes:</p>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>Class 1: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_nonsep_1" max=100 min=0 step=1 value=1 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'>
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>Class 3: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_nonsep_2" max=100 min=0 step=1 value=1 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Class 2: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_nonsep_3" max=100 min=0 step=1 value=1 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <h6>Middle Ground Scenario</h6>
+            <div class="row">
+                <div class="col-4"><img src="https://scatterplots.s3.eu-central-1.amazonaws.com/mixed.png"
+                                        style="max-height: 250px; max-width: 250px; padding: 10px"></div>
+                <div class="col-8">
+                    <div class="row">
+                        </br>
+                    </div>
+
+                    <div class='row'>
+                        <p> Please select separability for the following classes:</p>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #0173b2; color:white; text-align: left'>Class 1: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_mixed_1" max=100 min=0 step=1 value=35 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #0173b2); --paper-slider-knob-color: #0173b2; --paper-slider-pin-color: #0173b2;'>
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #de8f05; color:white; text-align: left'>Class 2: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_mixed_2" max=100 min=0 step=1 value=10 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #de8f05); --paper-slider-knob-color: #de8f05; --paper-slider-pin-color: #de8f05;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-3'>
+                                <h5><span class='badge badge-secondary'
+                                          style='background-color: #029e73; color:white; text-align: left'>Class 3: </span>
+                                </h5>
+                            </div>
+                            <div class='col-9'>
+                                <crowd-slider name="test_mixed_3" max=100 min=0 step=1 value=65 required=True pin=True
+                                              style='--paper-progress-active-color: var(--paper-slider-active-color, #029e73); --paper-slider-knob-color: #029e73; --paper-slider-pin-color: #029e73;'>
+
+                                </crowd-slider>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </full-instructions>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <img src= '${image_url}'
+                     style="max-height: 100%; max-width: 100%; padding: 10px"/>
+            </div>
+            <div class="col-4">
+                <h4> Please select separability for the following classes:</h4>
+                <div class="row">
+                    <div class="col-3" style="color: gray; font-size: 8; text-align: right"> </div>
+                    <div class="col-9" style="color: gray; font-size: 8; text-align: left">
+                        <div class="row">
+                            <div class="col-5" style="color: gray; font-size: 8; text-align: left">Non-Separable</div>
+                            <div class="col-2" style="color: gray; font-size: 8; text-align: left"></div>
+                            <div class="col-5" style="color: gray; font-size: 8; text-align: left">Fully Separable</div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div id="target" style="padding: 5px">
+
+
+                </div>
+                <hr>
+                <div class="row my-auto" style="  display: flex;
+                                                  align-items: center;
+                                                  justify-content: center;">
+                    <crowd-button form-action="submit" variant="primary">Submit</crowd-button>
+                    <p style="color: gray"><br>(Note: If the majority of sliders are left at 50% value, the HIT will be rejected.)</p>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</crowd-form>
+
+<script>
+
+
+
+    i = 4;
+
+    $('#target').append("<div class='row'>" +
+                "<div class='col-3'><h5 > <span class='badge badge-secondary' style='background-color:" + colors[i] + "; color:white; text-align: left'>Class: </span> </h5></div>" +
+                "<div class='col-9'>" +
+                "<crowd-slider id='class_" + i + "' name='Separability" + i + "' max=100 min=0 step=1 value=50 required=True pin=True " +
+                "style='--paper-progress-active-color: var(--paper-slider-active-color, " + colors[i] + "); " +
+                "--paper-slider-knob-color:  " + colors[i] + ";" +
+                "--paper-slider-pin-color: " + colors[i] + ";'" +
+                "></crowd-slider>" +
+                "</div></div>" +
+                "</br>")
+
+
+
+</script>
