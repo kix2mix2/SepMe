@@ -4,6 +4,8 @@ import math
 from scipy import stats
 from SepMe.graph import add_node_attr
 
+np.seterr(over="raise")
+
 
 def get_vote(neighbours, pessimism=True, target_class=1):
     if len(neighbours) == 1:
@@ -120,16 +122,32 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
 def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
     df = neighbour_purity(graph, df, purity_type)
     stats = {}
+    np.seterr(over="raise")
+    print(df.columns)
+    print(np.sum(df["neighbours"]))
+    print(np.sum(df.loc[df["class"] == 1, "neighbours"]))
+    print("----")
     stats["cp_a"] = np.mean(df["cp"])
-    stats["ce_a"] = np.sum(df["ce"] * df["neighbours"]) / np.sum(df["neighbours"])
+    nns = np.sum(df["neighbours"])
+    if nns > 0:
+        stats["ce_a"] = np.sum(df["ce"] * df["neighbours"]) / np.sum(df["neighbours"])
+    else:
+        stats["ce_a"] = -1
+
     stats["mv_a_true"] = np.mean(df["mv_true"])
     stats["mv_a_false"] = np.mean(df["mv_false"])
 
     for cc in set(df["class"]):
         stats["cp_{}".format(cc)] = np.mean(df.loc[df["class"] == cc, "cp"])
-        stats["ce_{}".format(cc)] = np.sum(
-            df.loc[df["class"] == cc, "ce"] * df.loc[df["class"] == cc, "neighbours"]
-        ) / np.sum(df.loc[df["class"] == cc, "neighbours"])
+
+        nns = np.sum(df.loc[df["class"] == cc, "neighbours"])
+        if nns > 0:
+            stats["ce_{}".format(cc)] = np.sum(
+                df.loc[df["class"] == cc, "ce"]
+                * df.loc[df["class"] == cc, "neighbours"]
+            ) / np.sum(df.loc[df["class"] == cc, "neighbours"])
+        else:
+            stats["ce_{}"] = -1
         stats["mv_{}_true".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_true"])
         stats["mv_{}_false".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_false"])
 

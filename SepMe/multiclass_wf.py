@@ -39,7 +39,7 @@ def workflow(config_path):
     if not os.path.exists(dict_dir):
         os.makedirs(dict_dir)
 
-    files = os.listdir(config["folder_path"])
+    files = os.listdir(config["folder_path"])[:5]
     # files = ['boston_umap2-mds2.csv']
     results = []
 
