@@ -122,11 +122,7 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
 def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
     df = neighbour_purity(graph, df, purity_type)
     stats = {}
-    np.seterr(over="raise")
-    print(df.columns)
-    print(np.sum(df["neighbours"]))
-    print(np.sum(df.loc[df["class"] == 1, "neighbours"]))
-    print("----")
+
     stats["cp_a"] = np.mean(df["cp"])
     nns = np.sum(df["neighbours"])
     if nns > 0:
