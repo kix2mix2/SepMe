@@ -11,9 +11,8 @@ import psutil
 
 
 @click.command()
-@click.option("--config-path", default="SepMe/configs/baby_config.yaml")
-@click.option("--save", default=5)
-def workflow(config_path, save):
+@click.option("--config-path", default="SepMe/configs/sampling_config.yaml")
+def workflow(config_path):
     # Note: The entrypoint names are defined in MLproject. The artifact directories
     # are documented by each step's .py file.
     ray.init(num_cpus=psutil.cpu_count())

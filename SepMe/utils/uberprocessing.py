@@ -69,7 +69,7 @@ def save_progress(data_dict, results_path):
     # results_all = pd.read_csv(results_path, index_col = 0)
     # results_all = results_all.append(results_df, sort = False)
     # results_all.to_csv(results_path)
-
+    print(results_path)
     results_df.to_csv(results_path)
 
     return {}

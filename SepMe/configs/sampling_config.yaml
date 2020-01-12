@@ -1,12 +1,15 @@
-experiment_name: 'sampling_data'
-data_path: 'data/orig_data/human_reduced_results.csv'
-folder_path: 'data/orig_data/input_data/enhanced_dim_data/'
-results_path: 'data/orig_data/graph_results/res_'
-dict_path: 'data/orig_data/graph_results/res_dict_'
-graph_path: 'data/orig_data/graphs/'
+experiment_name: 'mturk_batch'
+folder_path: 'data/mturk_samples/phase1/data/'
+results_path: 'data/mturk_samples/phase1/graph_results/res_'
+dict_path: 'data/mturk_samples/phase1/graph_results/res_dict_'
+graph_path: 'data/mturk_samples/phase1/graphs/'
 graph_types:
-  knn: [2, 4, 5]
-#  cbsg: [2]
+  knn: [1, 2, 4, 6, 8]
+  del:
+  kncg: [2,4]
+  bt: [0.005, 0.02, 0.05, 0.1, 0.5]
+  as: [0.01, 0.02, 0.05, 0.1, 0.5]
+  cbsg: [0.1, 0.2, 0.5, 2]
 purities:
   type: ['ltcc', 'cp', 'ce', 'mv', 'mcec']
 

@@ -52,7 +52,7 @@ def calculate_graphs(graph_path, df, config):
             if graph_types["del"] is None:
                 graph_types["del"] = get_delaunay(df)
             if graph_types["mst"] is None:
-                graph_types["mst"] = graph_types["mst"] = get_mst(graph_types["del"])
+                graph_types["mst"] = get_mst(graph_types["del"])
             graph_types["rng"] = {}
             graph_types["rng"] = add_node_attr(get_cbsg(df, 2), df)
 

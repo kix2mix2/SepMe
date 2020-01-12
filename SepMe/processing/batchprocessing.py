@@ -7,6 +7,12 @@ import seaborn as sns
 from sklearn.preprocessing import minmax_scale
 
 
+def select_df(df, kind="semantic", phase="task", versus=False):
+    return df.loc[
+        (df["type"] == kind) & (df["phase"] == phase) & (df["1v1"] == versus)
+    ].copy()
+
+
 def aggregate_batch(df):
     df_agg = (
         df.groupby(["HITname"])
@@ -167,12 +173,12 @@ def append_test_data(batch_file, check_file):
         "LifetimeApprovalRate",
     ]
 
-    df.drop(drop, axis=1, inplace=True)
-
-    try:
-        df.drop(["Input.class_set"], axis=1, inplace=True)
-    except KeyError:
-        pass
+    # df.drop(drop, axis=1, inplace=True)
+    #
+    # try:
+    #     df.drop(["Input.class_set"], axis=1, inplace=True)
+    # except KeyError:
+    #     pass
 
     try:
         df.drop(["Input.counts"], axis=1, inplace=True)
