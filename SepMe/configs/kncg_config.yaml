@@ -1,0 +1,11 @@
+experiment_name: 'kncg_config'
+folder_path: 'data/mturk_samples/phase1/data/'
+results_path: 'data/mturk_samples/phase1/graph_results/res_'
+dict_path: 'data/mturk_samples/phase1/graph_results/res_dict_'
+graph_path: 'data/mturk_samples/phase1/graphs/'
+graph_types:
+  kncg: [2,4]
+purities:
+  type: ['ltcc', 'cp', 'ce', 'mv', 'mcec']
+
+

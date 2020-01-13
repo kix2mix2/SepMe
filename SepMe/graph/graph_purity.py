@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import networkx as nx
 import math
 from scipy import stats
@@ -184,19 +185,21 @@ def ltcc(graph, df):
     return stats
 
 
-def get_amount_mixed(graph):
+def get_amount_mixed(graph, class_name="class"):
     rem_edges = 0
     for edge in graph.edges():
         # print(edge)
-        node_a = graph.nodes(data=True)[edge[0]]["class"]
-        node_b = graph.nodes(data=True)[edge[1]]["class"]
+        node_a = graph.nodes(data=True)[edge[0]][class_name]
+        node_b = graph.nodes(data=True)[edge[1]][class_name]
 
         if node_a != node_b:
             rem_edges += 1
     return rem_edges
 
 
-def mcec(graph, df, m):
+def mcec(graph, df, m, class_name="class"):
+
+    nx.set_node_attributes(graph, df[[class_name]].to_dict("index"))
     mixed = []
     rem_edges = get_amount_mixed(graph)
     mixed.append(rem_edges)
@@ -204,12 +207,27 @@ def mcec(graph, df, m):
 
     for i in range(m):
         ddf = df.copy()
-        ddf["class"] = np.random.permutation(df["class"])
-        nx.set_node_attributes(graph, ddf[["class"]].to_dict("index"))
-        mixed.append(get_amount_mixed(graph))
+        ddf[class_name] = np.random.permutation(df[class_name])
+        nx.set_node_attributes(graph, ddf[[class_name]].to_dict("index"))
+
+        mixed.append(get_amount_mixed(graph, class_name))
 
     mixed = np.array(mixed)
     # print(mixed)
     # reset node attr just in case
-    nx.set_node_attributes(graph, df[["class"]].to_dict("index"))
+    nx.set_node_attributes(graph, df[[class_name]].to_dict("index"))
     return len(mixed[mixed > rem_edges]) / m
+
+
+def all_mcec(graph, df, m):
+    class_labels = list(set(df["class"]))
+    df_class = pd.get_dummies(df["class"])
+    df_class.columns = ["class_{}".format(dd) for dd in df_class]
+    df1 = pd.concat([df, df_class], axis=1)
+
+    stats = {}
+    # print(df1.columns)
+    for cc in class_labels:
+        stats[cc] = mcec(graph, df1, m, class_name="class_{}".format(cc))
+
+    return stats

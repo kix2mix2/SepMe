@@ -330,7 +330,9 @@ def get_cbsg(df, beta=0):
     point_set = np.array(df[["x", "y"]])
     point_set = point_set + 0.0001
 
-    aGraph = nglpy.Graph(point_set, "beta skeleton", 9, beta)
+    # aGraph = nglpy.Graph(point_set, "beta skeleton", 9, beta)
+    aGraph = nglpy.EmptyRegionGraph(max_neighbors=9, relaxed=False, beta=beta)
+    aGraph.build(point_set)
     d = aGraph.neighbors()
 
     for key, value in d.items():

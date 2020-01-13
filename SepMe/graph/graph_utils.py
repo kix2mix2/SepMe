@@ -5,6 +5,7 @@ from .graph_purity import *
 from SepMe import logger
 import os
 import pickle
+import pandas as pd
 
 
 @timeit
@@ -84,7 +85,8 @@ def calculate_purities(df, graph, purities):
     if "ltcc" in purities["type"]:
         purity_dict["ltcc"] = ltcc(graph, df)
     if "mcec" in purities["type"]:
-        purity_dict["mcec"] = mcec(graph, df, 100)
+
+        purity_dict["mcec"] = all_mcec(graph, df, 100)
 
     neighbour_purity_list = list({"cp", "ce", "mv"}.intersection(set(purities["type"])))
     purity_dict.update(total_neighbour_purity(df, graph, neighbour_purity_list))
