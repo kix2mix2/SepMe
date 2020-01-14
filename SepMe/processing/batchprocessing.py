@@ -5,6 +5,81 @@ import pandas as pd
 import scipy.stats
 import seaborn as sns
 from sklearn.preprocessing import minmax_scale
+from sklearn.metrics import (
+    auc,
+    roc_auc_score,
+    precision_score,
+    recall_score,
+    accuracy_score,
+)
+from sklearn.model_selection import train_test_split
+import scikitplot as skplt
+import random
+from scipy.stats import sem, t
+from scipy import mean
+
+
+def plot_violins(df, ax):
+    df["pm"] = minmax_scale(df["M"])
+    df["pa"] = minmax_scale(df["A"])
+
+    df["category"] = "expert-class" + df["M"].astype(str)
+    df = df.sort_values(["category"])
+
+    sns.violinplot(
+        x="category",
+        y="human_rating",
+        hue="type",
+        split=True,
+        inner="quart",
+        palette={"semantic": "lightyellow", "abstract": "lightblue"},
+        data=df,
+        ax=ax[0],
+    )
+
+    sns.boxplot(
+        x="category",
+        y="human_rating",
+        hue="type",
+        palette=["lightblue", "lightyellow"],
+        data=df,
+        ax=ax[1],
+    )
+
+
+def aggregate(df):
+    df_agg = df.groupby(["filename", "type", "1v1", "phase"]).agg(
+        {
+            "human_rating": ["mean", "count", sem],
+            "M": "first",
+            "A": "first",
+            "pass": "sum",
+            "as_0.1_ce": ["mean", sem],
+        }
+    )
+
+    df_agg.columns = ["%s%s" % (a, ".%s" % b if b else "") for a, b in df_agg.columns]
+
+    df_agg = df_agg.reset_index()
+    print(len(set(df_agg.filename)))
+
+    confidence = 0.95
+    h = df_agg["human_rating.sem"] * t.ppf(
+        (1 + confidence) / 2, df_agg["human_rating.count"] - 1
+    )
+
+    df_agg["start"] = df_agg["human_rating.mean"] - h
+    df_agg["end"] = df_agg["human_rating.mean"] + h
+    df_agg["spread"] = df_agg["end"] - df_agg["start"]
+
+    return df_agg
+
+
+def get_dfs(df):
+    df1 = select_df(df, kind="abstract", phase="task", versus=False)
+    df2 = select_df(df, kind="semantic", phase="task", versus=False)
+
+    return df1, df2
 
 
 def select_df(df, kind="semantic", phase="task", versus=False):
