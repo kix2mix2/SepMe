@@ -34,9 +34,11 @@ def preprocess_df(df, dims, size=0.5, occlusion=0.1, save=None, sort=True):
 
     # print(ddf.shape)
     classes = list(set(ddf["class"]))
+
     if len(classes) > 10:
         print("Classes: {}".format(len(classes)))
         ddf.columns = ["x", "y", "orig_class"]  # rename cols
+
         merge_classes = list(
             ddf[["orig_class", "x"]]
             .groupby(["orig_class"])
@@ -82,7 +84,9 @@ def preprocess_df(df, dims, size=0.5, occlusion=0.1, save=None, sort=True):
         buff = 0.8 * buff
 
     circles = get_circles(ddf, buff)
+
     rem_indexes = remove_circles_by_partition(ddf, circles, 2 * buff, occlusion)
+
     ddf = ddf.drop(rem_indexes)
     circles = circles.drop(rem_indexes)
 
