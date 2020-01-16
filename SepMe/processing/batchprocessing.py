@@ -83,9 +83,7 @@ def get_dfs(df):
 
 
 def select_df(df, kind="semantic", phase="task", versus=False):
-    return df.loc[
-        (df["type"] == kind) & (df["phase"] == phase) & (df["1v1"] == versus)
-    ].copy()
+    return df.loc[(df["type"] == kind)].copy()
 
 
 def aggregate_batch(df):
