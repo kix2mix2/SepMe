@@ -1,0 +1,502 @@
+[I 13:05:30.660 NotebookApp] Serving notebooks from local directory: /home/morarica/Developer/SepMe
+[I 13:05:30.661 NotebookApp] The Jupyter Notebook is running at:
+[I 13:05:30.661 NotebookApp] http://localhost:8889/?token=a2ebef402ebb3ac143821a553e6c9209f17f96e441f8334c
+[I 13:05:30.661 NotebookApp]  or http://127.0.0.1:8889/?token=a2ebef402ebb3ac143821a553e6c9209f17f96e441f8334c
+[I 13:05:30.661 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 13:05:30.676 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///home/morarica/.local/share/jupyter/runtime/nbserver-21290-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8889/?token=a2ebef402ebb3ac143821a553e6c9209f17f96e441f8334c
+     or http://127.0.0.1:8889/?token=a2ebef402ebb3ac143821a553e6c9209f17f96e441f8334c
+[I 13:06:07.813 NotebookApp] 302 GET / (::1) 3.68ms
+[I 13:06:23.720 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:06:23.734 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 13:06:37.525 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:06:40.082 NotebookApp] Kernel started: 26c96198-ef01-46f1-829a-5c83fb765e00
+[I 13:08:40.131 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:08:40.134 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:10:40.239 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:10:40.243 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:25:42.020 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:25:42.024 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:27:42.452 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:27:42.463 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:30:07.805 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:30:07.810 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:33:44.610 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:33:44.617 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:38:07.621 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:38:07.628 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:40:53.793 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:40:53.812 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:42:53.728 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:42:53.735 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:44:53.701 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:44:53.705 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:46:53.698 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:46:53.705 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:48:53.735 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:48:53.743 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:51:06.754 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:51:06.767 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:54:16.996 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:54:17.008 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 13:58:29.208 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 13:58:29.219 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:03:40.531 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:03:40.543 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:06:10.674 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:06:10.686 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:08:10.677 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:08:10.689 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:10:10.684 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:10:10.698 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:12:10.682 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:12:10.694 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:14:12.059 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:14:12.065 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 14:14:51.369 NotebookApp] Notebook Jupyters/ml/bayes.ipynb is not trusted
+[I 14:14:54.142 NotebookApp] Kernel started: 416d713b-783a-4117-a326-69e85de5ac73
+[I 14:16:20.216 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:16:20.225 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:16:53.359 NotebookApp] Saving file at /Jupyters/ml/bayes.ipynb
+[W 14:16:53.367 NotebookApp] Notebook Jupyters/ml/bayes.ipynb is not trusted
+[I 14:16:54.233 NotebookApp] Saving file at /Jupyters/ml/bayes.ipynb
+[W 14:16:54.237 NotebookApp] Notebook Jupyters/ml/bayes.ipynb is not trusted
+[I 14:18:54.239 NotebookApp] Saving file at /Jupyters/ml/bayes.ipynb
+[W 14:18:54.244 NotebookApp] Notebook Jupyters/ml/bayes.ipynb is not trusted
+[I 14:18:56.371 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:18:56.374 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:20:54.290 NotebookApp] Saving file at /Jupyters/ml/bayes.ipynb
+[W 14:20:54.302 NotebookApp] Notebook Jupyters/ml/bayes.ipynb is not trusted
+[I 14:20:56.356 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:20:56.370 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:22:56.384 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:22:56.389 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:24:56.369 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:24:56.380 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:26:56.395 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:26:56.407 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:28:56.462 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:28:56.468 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:30:56.397 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:30:56.409 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:32:56.408 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:32:56.420 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:34:56.411 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:34:56.414 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:36:56.412 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:36:56.415 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 14:46:22.481 NotebookApp] delete /Jupyters/ml/Data Explor.ipynb
+[W 14:46:52.799 NotebookApp] delete /Jupyters/the machine learning.ipynb
+[W 14:46:52.860 NotebookApp] delete /Jupyters/Unify Data.ipynb
+[W 14:46:52.871 NotebookApp] delete /Jupyters/xgboost.ipynb
+[W 14:46:57.944 NotebookApp] Notebook Jupyters/ml/data_explor.ipynb is not trusted
+[I 14:46:58.231 NotebookApp] Kernel started: b27e6c34-d2b2-400c-95cf-d9747b577842
+[I 14:47:51.262 NotebookApp] Starting buffering for b27e6c34-d2b2-400c-95cf-d9747b577842:5259730255104de28110927de3e623ac
+[I 14:48:59.674 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:48:59.679 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:49:46.834 NotebookApp] Kernel interrupted: 26c96198-ef01-46f1-829a-5c83fb765e00
+[I 14:50:59.664 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:50:59.666 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:52:59.676 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:52:59.679 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:54:59.690 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:54:59.695 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:56:59.727 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:56:59.732 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 14:58:59.687 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 14:58:59.691 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:00:59.741 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:00:59.744 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:02:59.702 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:02:59.705 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:04:59.873 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:04:59.880 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:07:00.145 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:07:00.168 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:09:00.154 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:09:00.175 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:11:00.120 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:11:00.136 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:13:00.773 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:13:00.783 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:15:14.601 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:15:14.612 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:17:14.673 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:17:14.697 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:19:14.593 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:19:14.610 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:20:12.538 NotebookApp] Copying Jupyters/ml/bayes-Copy2.ipynb to /Jupyters/ml
+[W 15:20:13.926 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 15:20:15.015 NotebookApp] Notebook Jupyters/ml/bayes-Copy1.ipynb is not trusted
+[I 15:21:14.629 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:21:14.681 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:23:14.698 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:23:14.717 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:25:14.699 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:25:14.714 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:27:14.608 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:27:14.637 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:29:14.609 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:29:14.628 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:31:14.668 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:31:14.679 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:33:14.624 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:33:14.647 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:35:14.643 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:35:14.655 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:37:14.663 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:37:14.677 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:39:14.585 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:39:14.627 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:41:14.675 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:41:14.692 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:43:14.671 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:43:14.684 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:45:14.596 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:45:14.611 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:47:14.678 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:47:14.691 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:49:14.645 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:49:14.661 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:51:14.655 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:51:14.668 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:53:14.748 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:53:14.767 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:55:14.684 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:55:14.699 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:57:14.847 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:57:14.870 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 15:59:14.640 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 15:59:14.661 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:01:14.698 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:01:14.707 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:03:14.614 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:03:14.623 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:05:14.629 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:05:14.648 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:07:14.588 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:07:14.595 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:09:14.633 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:09:14.650 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:11:14.637 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:11:14.642 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:13:14.616 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:13:14.631 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:15:14.670 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:15:14.688 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:17:15.002 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:17:15.009 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:20:58.137 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:20:58.156 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:24:17.506 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:24:17.512 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:34:39.886 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:34:39.892 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:36:39.840 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:36:39.857 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:38:39.883 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:38:39.910 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:40:39.883 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:40:39.894 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:42:39.882 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:42:39.888 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:44:39.899 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:44:39.974 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:46:39.853 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:46:39.859 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:48:39.864 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:48:39.871 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:50:39.823 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:50:39.828 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:52:39.867 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:52:39.883 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:54:39.857 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:54:39.879 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:56:39.907 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:56:39.914 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 16:58:39.901 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 16:58:39.925 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:00:39.858 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:00:39.868 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:02:39.900 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:02:39.909 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:04:39.867 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:04:39.875 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:06:39.898 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:06:39.917 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:08:39.872 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:08:39.877 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:10:39.912 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:10:39.924 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:12:39.883 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:12:39.897 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:14:39.886 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:14:39.908 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:16:39.915 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:16:39.922 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:18:39.868 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:18:39.875 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:20:41.128 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:20:41.150 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:22:41.073 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:22:41.078 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:24:41.141 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:24:41.147 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:26:41.103 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:26:41.109 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:28:41.275 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:28:41.293 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:30:41.216 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:30:41.231 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:31:41.555 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:31:41.562 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:32:41.098 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:32:41.112 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:34:41.081 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:34:41.098 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 17:35:20.719 NotebookApp] delete /Jupyters/analysis/data analysis.ipynb
+[W 17:35:45.332 NotebookApp] delete /Jupyters/AWS Interaction/bonus.csv
+[W 17:35:45.386 NotebookApp] delete /Jupyters/AWS Interaction/bonuses_uuids.csv
+[W 17:35:45.398 NotebookApp] delete /Jupyters/AWS Interaction/extra_semantic_assignemnts.csv
+[W 17:35:45.409 NotebookApp] delete /Jupyters/AWS Interaction/remaining_bonuses.csv
+[W 17:35:45.419 NotebookApp] delete /Jupyters/AWS Interaction/test_python.png
+[W 17:36:04.137 NotebookApp] delete /Jupyters/ml/bayes-Copy1.ipynb
+[I 17:36:41.499 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:36:41.511 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:38:41.481 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:38:41.497 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:40:41.519 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:40:41.525 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:42:41.525 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:42:41.547 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:44:41.496 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:44:41.501 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:46:41.474 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:46:41.487 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:48:41.522 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:48:41.530 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:50:41.508 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:50:41.516 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:52:41.503 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:52:41.510 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:54:41.489 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:54:41.511 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:56:41.510 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:56:41.530 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 17:58:41.756 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 17:58:41.765 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:00:41.528 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:00:41.543 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:02:41.480 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:02:41.488 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:04:41.630 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:04:41.647 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:06:41.606 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:06:41.617 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:08:41.590 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:08:41.599 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:10:41.551 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:10:41.557 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:12:41.536 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:12:41.551 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:14:41.648 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:14:41.653 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:16:41.750 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:16:41.757 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:18:41.618 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:18:41.631 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:20:41.568 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:20:41.585 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:22:49.120 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:22:49.134 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:24:49.504 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:24:49.509 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:26:51.952 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:26:51.969 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:28:52.708 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:28:52.719 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:30:56.052 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:30:56.059 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:33:05.857 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:33:05.870 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:35:05.817 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:35:05.828 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:37:05.824 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:37:05.835 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:39:05.873 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:39:05.884 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:41:05.858 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:41:05.874 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:43:05.854 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:43:05.866 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:45:05.909 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:45:05.924 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[I 18:47:05.888 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy2.ipynb
+[W 18:47:05.891 NotebookApp] Notebook Jupyters/ml/bayes-Copy2.ipynb is not trusted
+[W 19:23:12.520 NotebookApp] WebSocket ping timeout after 119997 ms.
+[I 19:23:17.548 NotebookApp] Starting buffering for 26c96198-ef01-46f1-829a-5c83fb765e00:cfba6388ff7c4de98c7b40344f13198f
+[W 19:23:27.919 NotebookApp] WebSocket ping timeout after 119994 ms.
+[I 19:23:32.930 NotebookApp] Starting buffering for 416d713b-783a-4117-a326-69e85de5ac73:efa426201bba420380c2c560afb1c5cf
+[I 00:00:04.542 NotebookApp] The port 8889 is already in use, trying another port.
+[I 00:00:04.565 NotebookApp] Serving notebooks from local directory: /home/morarica/Developer/SepMe
+[I 00:00:04.565 NotebookApp] The Jupyter Notebook is running at:
+[I 00:00:04.565 NotebookApp] http://localhost:8890/?token=6c5a5eeaa5793f3e8fcf303c1b4efa004f82c1ac11e472e5
+[I 00:00:04.565 NotebookApp]  or http://127.0.0.1:8890/?token=6c5a5eeaa5793f3e8fcf303c1b4efa004f82c1ac11e472e5
+[I 00:00:04.565 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 00:00:04.580 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///home/morarica/.local/share/jupyter/runtime/nbserver-28709-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8890/?token=6c5a5eeaa5793f3e8fcf303c1b4efa004f82c1ac11e472e5
+     or http://127.0.0.1:8890/?token=6c5a5eeaa5793f3e8fcf303c1b4efa004f82c1ac11e472e5
+[I 00:01:22.757 NotebookApp] 302 GET / (::1) 1.17ms
+[W 00:01:34.026 NotebookApp] Notebook Jupyters/ml/the machine learning.ipynb is not trusted
+[I 00:01:34.771 NotebookApp] Kernel started: e88940bb-a9a1-4374-9e00-e87c7bb5a64a
+[W 00:34:16.555 NotebookApp] Notebook Jupyters/Batch Data all.ipynb is not trusted
+[I 00:34:17.652 NotebookApp] Kernel started: 61d975e5-f752-4588-a834-d800ead9a2d7
+[I 00:38:18.160 NotebookApp] Saving file at /Jupyters/Batch Data all.ipynb
+[W 00:38:18.163 NotebookApp] Notebook Jupyters/Batch Data all.ipynb is not trusted
+[I 00:40:18.206 NotebookApp] Saving file at /Jupyters/Batch Data all.ipynb
+[W 00:40:18.209 NotebookApp] Notebook Jupyters/Batch Data all.ipynb is not trusted
+[W 03:06:20.168 NotebookApp] WebSocket ping timeout after 119981 ms.
+[I 03:06:25.191 NotebookApp] Starting buffering for 61d975e5-f752-4588-a834-d800ead9a2d7:6763b1d96f5f4b458c05d2c1c78790fe
+[W 03:06:37.519 NotebookApp] WebSocket ping timeout after 119981 ms.
+[I 03:06:42.524 NotebookApp] Starting buffering for e88940bb-a9a1-4374-9e00-e87c7bb5a64a:96cf2be5bf404b8d9b7379118836df31
+[I 10:11:44.797 NotebookApp] 302 GET / (::1) 2.65ms
+[I 10:11:46.249 NotebookApp] 302 GET / (::1) 1.23ms
+[W 10:12:01.580 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:12:04.164 NotebookApp] Kernel started: 61dec958-f768-41b8-a005-0b0b95770951
+[W 10:12:09.189 NotebookApp] Notebook Jupyters/ml/data_explor.ipynb is not trusted
+[I 10:14:04.409 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:14:04.423 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:14:09.446 NotebookApp] Saving file at /Jupyters/ml/data_explor.ipynb
+[I 10:15:45.710 NotebookApp] Kernel interrupted: 61dec958-f768-41b8-a005-0b0b95770951
+[I 10:16:04.436 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:16:04.443 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:18:04.325 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:18:04.330 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:20:04.330 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:20:04.386 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:21:56.765 NotebookApp] Starting buffering for b27e6c34-d2b2-400c-95cf-d9747b577842:fe2750cbdee54b208a0963e42c215ece
+[I 10:22:04.436 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:22:04.441 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:24:04.776 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:24:04.782 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:26:05.869 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:26:05.881 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:28:06.988 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:28:06.993 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:30:58.153 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:30:58.172 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:34:33.941 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:34:33.950 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:36:53.986 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:36:53.992 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:39:13.961 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:39:13.968 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:41:13.985 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:41:13.993 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:43:13.951 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:43:13.962 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:45:13.950 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:45:13.960 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:47:13.950 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:47:13.962 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:49:14.008 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:49:14.025 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:51:13.980 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:51:14.026 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:53:13.952 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:53:13.958 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:55:14.011 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:55:14.028 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:57:14.014 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:57:14.022 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 10:59:14.040 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 10:59:14.051 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:01:14.019 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:01:14.025 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:03:40.648 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:03:40.662 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:07:23.165 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:07:23.172 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[W 11:07:33.347 NotebookApp] Notebook Jupyters/ml/the machine learning.ipynb is not trusted
+[I 11:09:33.983 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:09:33.989 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:09:35.713 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:09:35.715 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:10:59.636 NotebookApp] Kernel interrupted: e88940bb-a9a1-4374-9e00-e87c7bb5a64a
+[I 11:11:04.213 NotebookApp] Kernel interrupted: e88940bb-a9a1-4374-9e00-e87c7bb5a64a
+[I 11:11:33.959 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:11:33.962 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:11:44.888 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:11:44.893 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:13:33.971 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:13:33.974 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:14:20.207 NotebookApp] Kernel interrupted: e88940bb-a9a1-4374-9e00-e87c7bb5a64a
+[I 11:14:20.541 NotebookApp] Kernel interrupted: e88940bb-a9a1-4374-9e00-e87c7bb5a64a
+[I 11:14:24.770 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:14:24.774 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:15:33.968 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:15:33.972 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:17:04.856 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:17:04.868 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:17:33.971 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:17:33.975 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:19:33.985 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:19:33.988 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:19:44.879 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:19:44.893 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:21:34.003 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:21:34.021 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:22:24.865 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:22:24.876 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:25:09.702 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:25:09.709 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:27:48.796 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:27:48.802 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:30:24.834 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:30:24.840 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:31:38.861 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:31:38.877 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:33:04.893 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:33:04.917 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:33:38.868 NotebookApp] Saving file at /Jupyters/ml/binary framework.ipynb
+[W 11:33:38.871 NotebookApp] Notebook Jupyters/ml/binary framework.ipynb is not trusted
+[I 11:35:44.888 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:35:44.903 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:37:58.636 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:37:58.641 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:39:58.532 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:39:58.549 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:42:37.995 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:42:38.003 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:46:24.981 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:46:24.998 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:48:24.860 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:48:24.870 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:50:58.071 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:50:58.079 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:54:45.070 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:54:45.083 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:57:00.830 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:57:00.846 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 11:59:55.809 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 11:59:55.857 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 12:02:55.759 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 12:02:55.764 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 12:05:56.064 NotebookApp] Saving file at /Jupyters/ml/bayes-Copy3.ipynb
+[W 12:05:56.068 NotebookApp] Notebook Jupyters/ml/bayes-Copy3.ipynb is not trusted
+[I 12:17:02.450 NotebookApp] Starting buffering for 61dec958-f768-41b8-a005-0b0b95770951:eb26d60a6d9f4049a9accee110a894af
+[I 12:17:06.660 NotebookApp] Starting buffering for e88940bb-a9a1-4374-9e00-e87c7bb5a64a:5a0a455a986544fb94267a4d829b0e1f
+[I 14:07:03.576 NotebookApp] 302 GET /tree/Jupyters/ml (::1) 2.23ms
+[I 14:07:08.069 NotebookApp] 302 GET / (::1) 1.22ms
+[I 14:07:08.077 NotebookApp] 302 GET /tree? (::1) 1.70ms
+[I 14:07:08.135 NotebookApp] 302 GET / (::1) 0.99ms
+[I 14:07:08.143 NotebookApp] 302 GET /tree? (::1) 1.59ms
+[W 14:07:19.988 NotebookApp] 401 POST /login?next=%2Ftree%3F (::1) 4.82ms referer=http://localhost:18888/login?next=%2Ftree%3F
