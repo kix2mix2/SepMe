@@ -9,25 +9,45 @@ import scipy.spatial
 
 
 def grid_scat(
-    x,
-    y,
-    df,
-    name="scatter_PCA_grid.pdf",
-    hue="human_rating.mean",
-    figsize=(80, 80),
-    size_x=40,
-    size_y=40,
-    n=0,
-    steps=100,
+    data,  # data frame containing x,y,hue columns as well as
+    # a path column which leads to where the images for each coordinate are saved.
+    x,  # name of the x coordinate column to plot
+    y,  # name of the y coordinate column to plot
+    hue="human_rating.mean",  # color of the border of the
+    name="scatter_PCA_grid.pdf",  # the name of the figure you save
+    figsize=(80, 80),  # size of the figure
+    gridsize=(40, 40),  # size of the grid (40x40 cells in total by default)
+    n=0,  # this is for overplotting. several scatterplots may be plotted on top of each,
+    # this decides which ones to plot.
 ):
-    cen = get_grid(x, y, size_x=size_x, size_y=size_y)
-    results2 = do_kdtree(cen, np.dstack([x, y]))
-    df["grid_loc"] = results2[0]
-    df["gx"] = cen[results2[0]][:, 0]
-    df["gy"] = cen[results2[0]][:, 1]
+    x = data[x]
+    y = data[y]
 
-    df_placed = df.groupby("grid_loc").nth(n).reset_index()
+    size_x = np.int(gridsize[0])
+    size_y = np.int(gridsize[1])
+
+    # get grid
+    cen = get_grid(x, y, size_x=size_x, size_y=size_y)
+
+    # calculate which grid cell is closest to each dataploint
+    results2 = do_kdtree(cen, np.dstack([x, y]))
+
+    # save new location in your dataframe
+    data["grid_loc"] = results2[0]
+    data["gx"] = cen[results2[0]][:, 0]
+    data["gy"] = cen[results2[0]][:, 1]
+
+    # select datapoints to plot
+    df_placed = data.groupby("grid_loc").nth(n).reset_index()
+
+    # print(df_placed.loc[df_placed['y']==1,'filename'])
+    # mini_df = df_placed.loc[df_placed['y']==1,:]
+    # ff,ax1 = plt.subplots(figsize=(10,10))
+    # sns.barplot(x = "filename", y = "spread", data = mini_df, capsize = .2, ax=ax1)
+
     df_placed = df_placed.sort_values(["gx", "gy"], ascending=False)
+
+    # plot the scatterplot of images
     scat_of_scat(
         list(df_placed["gx"]),
         list(df_placed["gy"]),
@@ -38,7 +58,7 @@ def grid_scat(
         steps=100,
     )
 
-    return df
+    return data
 
 
 def do_kdtree(combined_x_y_arrays, points):
@@ -148,7 +168,7 @@ def plot_violins(df, ax, x="category", y="human_rating", hue="type"):
         hue=hue,
         split=True,
         inner="quart",
-        palette={"semantic": "lightyellow", "abstract": "lightblue"},
+        palette={"semantic": "lightblue", "abstract": "lightyellow"},
         data=df,
         ax=ax[0],
     )

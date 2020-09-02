@@ -59,6 +59,8 @@ def aggregate(df, by=["filename", "type", "class"]):
     df_agg = df_agg.dropna(axis=1)
     df_agg = df_agg.sort_values(["expert_rating.first"] + by)
 
+    df_agg["half_interval"] = df_agg["spread"] / 2
+
     return df_agg
 
 
@@ -205,6 +207,7 @@ def reshape_humandf(res_path, index=["fileName", "type", "1v1", "phase"], drop=T
     df = pd.concat([df1, df2[["pass"]]], axis=1)
 
     df["human_rating"] = minmax_scale(df["human_rating"])
+
     ## comment out in the future
     if drop:
         df = df.loc[df["1v1"] is False]

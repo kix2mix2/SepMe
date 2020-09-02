@@ -120,7 +120,7 @@ def neighbour_purity(graph, df, purity_type=["cp", "ce", "mv"]):
     return df
 
 
-def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
+def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"], target=True):
     df = neighbour_purity(graph, df, purity_type)
     stats = {}
 
@@ -134,19 +134,24 @@ def total_neighbour_purity(df, graph, purity_type=["cp", "ce", "mv"]):
     stats["mv_a_true"] = np.mean(df["mv_true"])
     stats["mv_a_false"] = np.mean(df["mv_false"])
 
-    for cc in set(df["class"]):
-        stats["cp_{}".format(cc)] = np.mean(df.loc[df["class"] == cc, "cp"])
+    if target:
+        for cc in set(df["class"]):
+            stats["cp_{}".format(cc)] = np.mean(df.loc[df["class"] == cc, "cp"])
 
-        nns = np.sum(df.loc[df["class"] == cc, "neighbours"])
-        if nns > 0:
-            stats["ce_{}".format(cc)] = np.sum(
-                df.loc[df["class"] == cc, "ce"]
-                * df.loc[df["class"] == cc, "neighbours"]
-            ) / np.sum(df.loc[df["class"] == cc, "neighbours"])
-        else:
-            stats["ce_{}"] = -1
-        stats["mv_{}_true".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_true"])
-        stats["mv_{}_false".format(cc)] = np.mean(df.loc[df["class"] == cc, "mv_false"])
+            nns = np.sum(df.loc[df["class"] == cc, "neighbours"])
+            if nns > 0:
+                stats["ce_{}".format(cc)] = np.sum(
+                    df.loc[df["class"] == cc, "ce"]
+                    * df.loc[df["class"] == cc, "neighbours"]
+                ) / np.sum(df.loc[df["class"] == cc, "neighbours"])
+            else:
+                stats["ce_{}"] = -1
+            stats["mv_{}_true".format(cc)] = np.mean(
+                df.loc[df["class"] == cc, "mv_true"]
+            )
+            stats["mv_{}_false".format(cc)] = np.mean(
+                df.loc[df["class"] == cc, "mv_false"]
+            )
 
     return stats
 

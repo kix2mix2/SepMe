@@ -67,7 +67,9 @@ def process_dataset(i, file, config, class_num):
                 if type(nx_dict[graph]) is dict:
                     for subgraph in nx_dict[graph].keys():
                         data_dict[code_name][graph][subgraph] = calculate_purities(
-                            df, nx_dict[graph][subgraph], config["purities"],
+                            df,
+                            nx_dict[graph][subgraph],
+                            config["purities"],
                         )
                 else:
                     data_dict[code_name][graph] = calculate_purities(
@@ -131,3 +133,4 @@ if __name__ == "__main__":
     print("hello")
 
     workflow()
+    print("Job Done!")
